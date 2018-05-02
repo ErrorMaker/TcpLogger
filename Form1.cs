@@ -26,7 +26,6 @@ namespace JewLogger
         private void Form1_Load(object sender, EventArgs e)
         {
             this.btnStartListen.Enabled = true;
-            this.btnStopListen.Enabled = false;
         }
 
         private void btnStartListen_Click(object sender, EventArgs e)
@@ -45,7 +44,6 @@ namespace JewLogger
                 _listenerThread.Start();
 
                 this.btnStartListen.Enabled = false;
-                this.btnStopListen.Enabled = true;
 
             }
             catch (Exception ex)
@@ -95,18 +93,57 @@ namespace JewLogger
             _tcpForwarder.Socket.Close();
 
             this.btnStartListen.Enabled = true;
-            this.btnStopListen.Enabled = false;
         }
 
-        public static void AppendTextBox(Form1 instance, TextBox AppendTo, string value)
+        public static void AppendOutgoingTextBox(Form1 instance, string value)
         {
             if (instance.InvokeRequired)
             {
-                instance.Invoke(new Action<Form1, TextBox, string>(AppendTextBox), new object[] { instance, AppendTo, value });
+                instance.Invoke(new Action<Form1, string>(AppendOutgoingTextBox), new object[] { instance, value });
                 return;
             }
 
-            AppendTo.Text += value;
+            TextBox textBox = instance.txtOutgoingData;
+            int position = textBox.SelectionStart;
+
+            textBox.Text += value;
+
+            if (instance.txtOutgoingAutoscroll.Checked)
+            {
+                textBox.SelectionStart = textBox.Text.Length;
+                textBox.ScrollToCaret();
+            }
+            else
+            {
+                textBox.SelectionStart = position;
+                textBox.ScrollToCaret();
+            }
+
+        }
+
+        public static void AppendIncomingTextBox(Form1 instance, string value)
+        {
+            if (instance.InvokeRequired)
+            {
+                instance.Invoke(new Action<Form1, string>(AppendIncomingTextBox), new object[] { instance, value });
+                return;
+            }
+
+            TextBox textBox = instance.txtIncomingData;
+            int position = textBox.SelectionStart;
+      
+            textBox.Text += value;
+
+            if (instance.txtIncomingAutoscroll.Checked)
+            {
+                textBox.SelectionStart = textBox.Text.Length;
+                textBox.ScrollToCaret();
+            }
+            else
+            {
+                textBox.SelectionStart = position;
+                textBox.ScrollToCaret();
+            }
         }
     }
 

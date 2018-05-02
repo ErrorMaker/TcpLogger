@@ -79,37 +79,42 @@ namespace JewLogger
                         }
                     }
 
-                    if (this._incoming)
-                    {
-                        str = HandleIncomingData(str);
-                    }
-                    else
-                    {
-                        str = HandleOutgoingData(str);
-                    }
-
-                    string outputStr = str;
-
-                    for (int i = 0; i < 13; i++)
-                    {
-                        outputStr = outputStr.Replace("" + (char)i, "{" + i + "}");
-                    }
-
+                    List<string> packets = new List<string>();
 
                     if (this._incoming)
                     {
-
-                        Form1.AppendTextBox(this._mainForm, this._mainForm.txtIncomingData, "- " + str + Environment.NewLine);
-                        File.AppendAllText("packet.log", "INCOMING DATA: " + str + Environment.NewLine + Environment.NewLine);
+                        packets.AddRange(HandleIncomingData(str));
                     }
                     else
                     {
-                        Form1.AppendTextBox(this._mainForm, this._mainForm.txtOutgoingData, "- " + str + Environment.NewLine);
-                        File.AppendAllText("packet.log", "OUTGOING DATA: " + str + Environment.NewLine + Environment.NewLine);
+                        packets.AddRange(HandleOutgoingData(str));
+                    }
+
+                    foreach (string packet in packets)
+                    {
+                        string outputStr = packet;
+
+                        for (int i = 0; i < 13; i++)
+                        {
+                            outputStr = outputStr.Replace("" + (char)i, "{" + i + "}");
+                        }
+
+
+                        if (this._incoming)
+                        {
+                            Form1.AppendIncomingTextBox(this._mainForm, "- " + outputStr + Environment.NewLine);
+                            File.AppendAllText("packet.log", "INCOMING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
+                        }
+                        else
+                        {
+                            Form1.AppendOutgoingTextBox(this._mainForm, "- " + outputStr + Environment.NewLine);
+                            File.AppendAllText("packet.log", "OUTGOING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
+                        }
                     }
 
                     state.DestinationSocket.Send(state.Buffer, bytesRead, SocketFlags.None);
                     state.SourceSocket.BeginReceive(state.Buffer, 0, state.Buffer.Length, 0, OnDataReceive, state);
+
                 }
             }
             catch
@@ -119,15 +124,52 @@ namespace JewLogger
             }
         }
 
-        private string HandleIncomingData(string str)
+        private List<string> HandleIncomingData(string str)
         {
-            return str;
+            List<string> packets = new List<string>();
+            packets.Add(str);
+
+            /*try
+            {
+                int amountRead = 0;
+
+                while (amountRead < str.Length)
+                {
+                    string receiveLength = str.Substring(amountRead, amountRead + 3);
+                    amountRead += 3;
+
+                    int length = HabboEncoding.decodeB64(receiveLength);
+
+                    //MessageBox.Show("len: " + length);
+
+                    Form1.AppendIncomingTextBox(this._mainForm, "TEST: " + str.Substring(amountRead, amountRead + length));
+
+                    packets.Add(str.Substring(amountRead));
+                    //packets.Add(str.Substring(amountRead, amountRead + length));
+                    amountRead += length;
+
+
+                }
+            }
+            catch (Exception ex)
+            {
+                //MessageBox.Show(str + "\n" + ex.ToString());
+            }*/
+
+            return packets;
         }
 
-        private string HandleOutgoingData(string str)
+        private List<string> HandleOutgoingData(string str)
         {
+            List<string> packets = new List<string>();
+
             foreach (string packet in str.Split(new char[] { (char)1 }))
             {
+                if (packet.Length == 0)
+                {
+                    continue;
+                }
+
                 String newPacket = packet.Replace("" + (char)1, "");
 
                 if (newPacket.StartsWith("@A"))
@@ -137,9 +179,11 @@ namespace JewLogger
 
                     Form1._tcpForwarder._rc4Provider = new rc4Provider(encodeKey);
                 }
+
+                packets.Add(packet);
             }
 
-            return str;
+            return packets;
         }
 
         private class State

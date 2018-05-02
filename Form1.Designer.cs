@@ -45,7 +45,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtOutgoingData = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.btnStopListen = new System.Windows.Forms.Button();
+            this.txtOutgoingAutoscroll = new System.Windows.Forms.CheckBox();
+            this.txtIncomingAutoscroll = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -135,7 +136,7 @@
             // 
             // btnStartListen
             // 
-            this.btnStartListen.Location = new System.Drawing.Point(513, 33);
+            this.btnStartListen.Location = new System.Drawing.Point(649, 42);
             this.btnStartListen.Name = "btnStartListen";
             this.btnStartListen.Size = new System.Drawing.Size(138, 67);
             this.btnStartListen.TabIndex = 7;
@@ -149,7 +150,7 @@
             this.txtRemotePort.Name = "txtRemotePort";
             this.txtRemotePort.Size = new System.Drawing.Size(176, 20);
             this.txtRemotePort.TabIndex = 12;
-            this.txtRemotePort.Text = "55585";
+            this.txtRemotePort.Text = "1232";
             // 
             // txtRemoteAddress
             // 
@@ -157,7 +158,7 @@
             this.txtRemoteAddress.Name = "txtRemoteAddress";
             this.txtRemoteAddress.Size = new System.Drawing.Size(142, 20);
             this.txtRemoteAddress.TabIndex = 11;
-            this.txtRemoteAddress.Text = "puomi.tunk.org";
+            this.txtRemoteAddress.Text = "localhost";
             // 
             // label4
             // 
@@ -196,28 +197,43 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Outgoing data:";
             // 
-            // btnStopListen
+            // txtOutgoingAutoscroll
             // 
-            this.btnStopListen.Location = new System.Drawing.Point(657, 33);
-            this.btnStopListen.Name = "btnStopListen";
-            this.btnStopListen.Size = new System.Drawing.Size(133, 67);
-            this.btnStopListen.TabIndex = 8;
-            this.btnStopListen.Text = "Stop Listening";
-            this.btnStopListen.UseVisualStyleBackColor = true;
-            this.btnStopListen.Click += new System.EventHandler(this.btnStopListen_Click);
+            this.txtOutgoingAutoscroll.AutoSize = true;
+            this.txtOutgoingAutoscroll.Checked = true;
+            this.txtOutgoingAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.txtOutgoingAutoscroll.Location = new System.Drawing.Point(404, 554);
+            this.txtOutgoingAutoscroll.Name = "txtOutgoingAutoscroll";
+            this.txtOutgoingAutoscroll.Size = new System.Drawing.Size(75, 17);
+            this.txtOutgoingAutoscroll.TabIndex = 17;
+            this.txtOutgoingAutoscroll.Text = "Auto scroll";
+            this.txtOutgoingAutoscroll.UseVisualStyleBackColor = true;
+            // 
+            // txtIncomingAutoscroll
+            // 
+            this.txtIncomingAutoscroll.AutoSize = true;
+            this.txtIncomingAutoscroll.Checked = true;
+            this.txtIncomingAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.txtIncomingAutoscroll.Location = new System.Drawing.Point(15, 554);
+            this.txtIncomingAutoscroll.Name = "txtIncomingAutoscroll";
+            this.txtIncomingAutoscroll.Size = new System.Drawing.Size(75, 17);
+            this.txtIncomingAutoscroll.TabIndex = 18;
+            this.txtIncomingAutoscroll.Text = "Auto scroll";
+            this.txtIncomingAutoscroll.UseVisualStyleBackColor = true;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 557);
+            this.ClientSize = new System.Drawing.Size(800, 587);
+            this.Controls.Add(this.txtIncomingAutoscroll);
+            this.Controls.Add(this.txtOutgoingAutoscroll);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtOutgoingData);
             this.Controls.Add(this.txtRemotePort);
             this.Controls.Add(this.txtRemoteAddress);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.btnStopListen);
             this.Controls.Add(this.btnStartListen);
             this.Controls.Add(this.txtIncomingData);
             this.Controls.Add(this.label3);
@@ -256,7 +272,8 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnStopListen;
+        public System.Windows.Forms.CheckBox txtOutgoingAutoscroll;
+        public System.Windows.Forms.CheckBox txtIncomingAutoscroll;
     }
 }
 
