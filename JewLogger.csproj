@@ -47,11 +47,9 @@
   <ItemGroup>
     <Compile Include="Ciphering\rc4Core.cs" />
     <Compile Include="Ciphering\rc4Provider.cs" />
-    <Compile Include="frmSendingcs.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="frmSendingcs.Designer.cs">
-      <DependentUpon>frmSendingcs.cs</DependentUpon>
+    <Compile Include="frmSending.cs" />
+    <Compile Include="frmSending.Designer.cs">
+      <DependentUpon>frmSending.cs</DependentUpon>
     </Compile>
     <Compile Include="HabboEncoding.cs" />
     <Compile Include="Form1.cs">
@@ -66,8 +64,8 @@
     <EmbeddedResource Include="Form1.resx">
       <DependentUpon>Form1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="frmSendingcs.resx">
-      <DependentUpon>frmSendingcs.cs</DependentUpon>
+    <EmbeddedResource Include="frmSending.resx">
+      <DependentUpon>frmSending.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
