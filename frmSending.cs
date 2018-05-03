@@ -21,7 +21,7 @@ namespace JewLogger
         private void btnSendToClient_Click(object sender, EventArgs e)
         {
 
-            string clientPacket = txtSendData.Text + (char)1;
+            string clientPacket = AddCharacters(txtSendData.Text + (char)1);
             byte[] data = Encoding.Default.GetBytes(clientPacket);
 
             try
@@ -36,7 +36,7 @@ namespace JewLogger
 
         private void btnSendToServer_Click(object sender, EventArgs e)
         {
-            string sendPacket = "@" + HabboEncoding.encodeB64(txtSendData.Text.Length) + txtSendData.Text;
+            string sendPacket = AddCharacters("@" + HabboEncoding.encodeB64(txtSendData.Text.Length) + txtSendData.Text);
             byte[] data = Encoding.Default.GetBytes(sendPacket);
             try
             {
@@ -46,6 +46,18 @@ namespace JewLogger
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+    
+        private string AddCharacters(string packet)
+        {
+            string newPacket = packet;
+
+            for (int i = 0; i < 14; i++)
+            {
+                newPacket = newPacket.Replace("{" + i + "}", "" + (char)i);
+            }
+
+            return newPacket;
         }
 
         private void frmSending_Load(object sender, EventArgs e)

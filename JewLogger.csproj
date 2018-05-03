@@ -47,7 +47,9 @@
   <ItemGroup>
     <Compile Include="Ciphering\rc4Core.cs" />
     <Compile Include="Ciphering\rc4Provider.cs" />
-    <Compile Include="frmSending.cs" />
+    <Compile Include="frmSending.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="frmSending.Designer.cs">
       <DependentUpon>frmSending.cs</DependentUpon>
     </Compile>

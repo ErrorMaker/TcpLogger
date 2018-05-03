@@ -32,6 +32,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnSendToClient = new System.Windows.Forms.Button();
             this.btnSendToServer = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtSendData
@@ -72,17 +73,29 @@
             this.btnSendToServer.UseVisualStyleBackColor = true;
             this.btnSendToServer.Click += new System.EventHandler(this.btnSendToServer_Click);
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 195);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(448, 26);
+            this.label2.TabIndex = 8;
+            this.label2.Text = "Depending if you send to client or server, the program will automatically add the" +
+    " (char)1 suffix, \r\nor if sent to server, the B64 length prefix will be added aut" +
+    "omatically.";
+            // 
             // frmSending
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 192);
+            this.ClientSize = new System.Drawing.Size(567, 240);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSendToServer);
             this.Controls.Add(this.btnSendToClient);
             this.Controls.Add(this.txtSendData);
             this.Controls.Add(this.label1);
             this.Name = "frmSending";
-            this.Text = "frmSendingcs";
+            this.Text = "Send data to client/server";
             this.Load += new System.EventHandler(this.frmSending_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -95,5 +108,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnSendToClient;
         private System.Windows.Forms.Button btnSendToServer;
+        private System.Windows.Forms.Label label2;
     }
 }
