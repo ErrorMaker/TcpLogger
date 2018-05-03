@@ -45,8 +45,10 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtOutgoingData = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtOutgoingAutoscroll = new System.Windows.Forms.CheckBox();
-            this.txtIncomingAutoscroll = new System.Windows.Forms.CheckBox();
+            this.chkOutgoingAutoscroll = new System.Windows.Forms.CheckBox();
+            this.chkIncomingAutoscroll = new System.Windows.Forms.CheckBox();
+            this.chkDecodeEncryption = new System.Windows.Forms.CheckBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -197,37 +199,62 @@
             this.label6.TabIndex = 14;
             this.label6.Text = "Outgoing data:";
             // 
-            // txtOutgoingAutoscroll
+            // chkOutgoingAutoscroll
             // 
-            this.txtOutgoingAutoscroll.AutoSize = true;
-            this.txtOutgoingAutoscroll.Checked = true;
-            this.txtOutgoingAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.txtOutgoingAutoscroll.Location = new System.Drawing.Point(404, 554);
-            this.txtOutgoingAutoscroll.Name = "txtOutgoingAutoscroll";
-            this.txtOutgoingAutoscroll.Size = new System.Drawing.Size(75, 17);
-            this.txtOutgoingAutoscroll.TabIndex = 17;
-            this.txtOutgoingAutoscroll.Text = "Auto scroll";
-            this.txtOutgoingAutoscroll.UseVisualStyleBackColor = true;
+            this.chkOutgoingAutoscroll.AutoSize = true;
+            this.chkOutgoingAutoscroll.Checked = true;
+            this.chkOutgoingAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkOutgoingAutoscroll.Location = new System.Drawing.Point(404, 554);
+            this.chkOutgoingAutoscroll.Name = "chkOutgoingAutoscroll";
+            this.chkOutgoingAutoscroll.Size = new System.Drawing.Size(75, 17);
+            this.chkOutgoingAutoscroll.TabIndex = 17;
+            this.chkOutgoingAutoscroll.Text = "Auto scroll";
+            this.chkOutgoingAutoscroll.UseVisualStyleBackColor = true;
             // 
-            // txtIncomingAutoscroll
+            // chkIncomingAutoscroll
             // 
-            this.txtIncomingAutoscroll.AutoSize = true;
-            this.txtIncomingAutoscroll.Checked = true;
-            this.txtIncomingAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.txtIncomingAutoscroll.Location = new System.Drawing.Point(15, 554);
-            this.txtIncomingAutoscroll.Name = "txtIncomingAutoscroll";
-            this.txtIncomingAutoscroll.Size = new System.Drawing.Size(75, 17);
-            this.txtIncomingAutoscroll.TabIndex = 18;
-            this.txtIncomingAutoscroll.Text = "Auto scroll";
-            this.txtIncomingAutoscroll.UseVisualStyleBackColor = true;
+            this.chkIncomingAutoscroll.AutoSize = true;
+            this.chkIncomingAutoscroll.Checked = true;
+            this.chkIncomingAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkIncomingAutoscroll.Location = new System.Drawing.Point(15, 554);
+            this.chkIncomingAutoscroll.Name = "chkIncomingAutoscroll";
+            this.chkIncomingAutoscroll.Size = new System.Drawing.Size(75, 17);
+            this.chkIncomingAutoscroll.TabIndex = 18;
+            this.chkIncomingAutoscroll.Text = "Auto scroll";
+            this.chkIncomingAutoscroll.UseVisualStyleBackColor = true;
+            // 
+            // chkDecodeEncryption
+            // 
+            this.chkDecodeEncryption.AutoSize = true;
+            this.chkDecodeEncryption.Checked = true;
+            this.chkDecodeEncryption.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDecodeEncryption.Location = new System.Drawing.Point(96, 554);
+            this.chkDecodeEncryption.Name = "chkDecodeEncryption";
+            this.chkDecodeEncryption.Size = new System.Drawing.Size(114, 17);
+            this.chkDecodeEncryption.TabIndex = 19;
+            this.chkDecodeEncryption.Text = "Decode encrypton";
+            this.chkDecodeEncryption.UseVisualStyleBackColor = true;
+            this.chkDecodeEncryption.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(505, 42);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(138, 67);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Send Data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 587);
-            this.Controls.Add(this.txtIncomingAutoscroll);
-            this.Controls.Add(this.txtOutgoingAutoscroll);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.chkDecodeEncryption);
+            this.Controls.Add(this.chkIncomingAutoscroll);
+            this.Controls.Add(this.chkOutgoingAutoscroll);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtOutgoingData);
             this.Controls.Add(this.txtRemotePort);
@@ -272,8 +299,10 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
-        public System.Windows.Forms.CheckBox txtOutgoingAutoscroll;
-        public System.Windows.Forms.CheckBox txtIncomingAutoscroll;
+        public System.Windows.Forms.CheckBox chkOutgoingAutoscroll;
+        public System.Windows.Forms.CheckBox chkIncomingAutoscroll;
+        public System.Windows.Forms.CheckBox chkDecodeEncryption;
+        private System.Windows.Forms.Button button1;
     }
 }
 

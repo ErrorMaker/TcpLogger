@@ -14,9 +14,16 @@ namespace JewLogger
 {
     public partial class Form1 : Form
     {
-        public static bool _serverStarted = false;
-        public static TcpForwarderSlim _tcpForwarder;
+        private bool _serverStarted = false;
+        private TcpForwarderSlim _tcpForwarder;
         private Thread _listenerThread;
+        public static Form1 frmMain;
+
+        public TcpForwarderSlim TcpForwarder
+        {
+            get { return this._tcpForwarder; }
+        }
+
 
         public Form1()
         {
@@ -25,6 +32,7 @@ namespace JewLogger
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            frmMain = this;
             this.btnStartListen.Enabled = true;
         }
 
@@ -108,7 +116,7 @@ namespace JewLogger
 
             textBox.Text += value;
 
-            if (instance.txtOutgoingAutoscroll.Checked)
+            if (instance.chkOutgoingAutoscroll.Checked)
             {
                 textBox.SelectionStart = textBox.Text.Length;
                 textBox.ScrollToCaret();
@@ -134,7 +142,7 @@ namespace JewLogger
       
             textBox.Text += value;
 
-            if (instance.txtIncomingAutoscroll.Checked)
+            if (instance.chkIncomingAutoscroll.Checked)
             {
                 textBox.SelectionStart = textBox.Text.Length;
                 textBox.ScrollToCaret();
@@ -144,6 +152,17 @@ namespace JewLogger
                 textBox.SelectionStart = position;
                 textBox.ScrollToCaret();
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            frmSending frm = new frmSending();
+            frm.Show();
         }
     }
 

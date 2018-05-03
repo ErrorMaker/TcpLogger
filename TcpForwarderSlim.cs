@@ -14,9 +14,13 @@ namespace JewLogger
     public class TcpForwarderSlim
     {
         private Form1 _mainForm;
+        private State _state;
         private Socket _mainSocket;
         private TcpForwarderSlim _destination;
         private rc4Provider _rc4Provider;
+
+        private State _connectState;
+        private State _destinationState;
 
         private bool _incoming;
 
@@ -24,7 +28,17 @@ namespace JewLogger
         {
             get { return this._mainSocket; }
         }
-        
+
+        public State ConnectState
+        {
+            get { return this._connectState; }
+        }
+
+        public State DestinationState
+        {
+            get { return this._destinationState; }
+        }
+
         public TcpForwarderSlim Destination
         {
             get { return this._destination; }
@@ -47,17 +61,17 @@ namespace JewLogger
             {
                 var source = _mainSocket.Accept();
                 this._destination = new TcpForwarderSlim(this._mainForm, false);
-                var state = new State(source, _destination._mainSocket);
+                _destinationState = new State(source, _destination._mainSocket);
                 _destination.Connect(remote, source);
-                source.BeginReceive(state.Buffer, 0, state.Buffer.Length, 0, OnDataReceive, state);
+                source.BeginReceive(_destinationState.Buffer, 0, _destinationState.Buffer.Length, 0, OnDataReceive, _destinationState);
             }
         }
 
         private void Connect(EndPoint remoteEndpoint, Socket destination)
         {
-            var state = new State(_mainSocket, destination);
+            _connectState = new State(_mainSocket, destination);
             _mainSocket.Connect(remoteEndpoint);
-            _mainSocket.BeginReceive(state.Buffer, 0, state.Buffer.Length, SocketFlags.None, OnDataReceive, state);
+            _mainSocket.BeginReceive(_connectState.Buffer, 0, _connectState.Buffer.Length, SocketFlags.None, OnDataReceive, _connectState);
         }
 
         private void OnDataReceive(IAsyncResult result)
@@ -127,34 +141,24 @@ namespace JewLogger
         private List<string> HandleIncomingData(string str)
         {
             List<string> packets = new List<string>();
-            packets.Add(str);
 
-            /*try
+            try
             {
                 int amountRead = 0;
 
                 while (amountRead < str.Length)
                 {
-                    string receiveLength = str.Substring(amountRead, amountRead + 3);
+                    int recieveLength = HabboEncoding.decodeB64(str.Substring(amountRead, 3));
                     amountRead += 3;
 
-                    int length = HabboEncoding.decodeB64(receiveLength);
-
-                    //MessageBox.Show("len: " + length);
-
-                    Form1.AppendIncomingTextBox(this._mainForm, "TEST: " + str.Substring(amountRead, amountRead + length));
-
-                    packets.Add(str.Substring(amountRead));
-                    //packets.Add(str.Substring(amountRead, amountRead + length));
-                    amountRead += length;
-
-
+                    packets.Add(str.Substring(amountRead, recieveLength));
+                    amountRead += recieveLength;
                 }
             }
             catch (Exception ex)
             {
-                //MessageBox.Show(str + "\n" + ex.ToString());
-            }*/
+                MessageBox.Show(str + "\n" + ex.ToString());
+            }
 
             return packets;
         }
@@ -172,21 +176,21 @@ namespace JewLogger
 
                 String newPacket = packet.Replace("" + (char)1, "");
 
-                if (newPacket.StartsWith("@A"))
+                if (newPacket.StartsWith("@A") && _mainForm.chkDecodeEncryption.Checked)
                 {
                     String encodeKey = packet.Substring(2);
                     File.AppendAllText("packet.log", "ENCODE KEY: " + encodeKey + Environment.NewLine + Environment.NewLine);
 
-                    Form1._tcpForwarder._rc4Provider = new rc4Provider(encodeKey);
+                    Form1.frmMain.TcpForwarder._rc4Provider = new rc4Provider(encodeKey);
                 }
 
-                packets.Add(packet);
+                packets.Add(packet + (char)1);
             }
 
             return packets;
         }
 
-        private class State
+        public class State
         {
             public Socket SourceSocket { get; private set; }
             public Socket DestinationSocket { get; private set; }
