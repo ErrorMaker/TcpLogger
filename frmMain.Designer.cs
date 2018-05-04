@@ -32,6 +32,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.b64VL64HelperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtLocalAddress = new System.Windows.Forms.TextBox();
@@ -50,9 +52,9 @@
             this.chkDecodeEncryption = new System.Windows.Forms.CheckBox();
             this.chkLog = new System.Windows.Forms.CheckBox();
             this.btnStopListen = new System.Windows.Forms.Button();
-            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.sendDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.b64VL64HelperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnClearOutgoing = new System.Windows.Forms.Button();
+            this.btnClearIncoming = new System.Windows.Forms.Button();
+            this.btnSendData = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -85,6 +87,21 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.b64VL64HelperToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // b64VL64HelperToolStripMenuItem
+            // 
+            this.b64VL64HelperToolStripMenuItem.Name = "b64VL64HelperToolStripMenuItem";
+            this.b64VL64HelperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.b64VL64HelperToolStripMenuItem.Text = "B64/VL64 Helper";
+            this.b64VL64HelperToolStripMenuItem.Click += new System.EventHandler(this.b64VL64HelperToolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -96,7 +113,7 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
             this.aboutToolStripMenuItem.Text = "About";
             this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
@@ -137,9 +154,9 @@
             // 
             // btnStartListen
             // 
-            this.btnStartListen.Location = new System.Drawing.Point(404, 35);
+            this.btnStartListen.Location = new System.Drawing.Point(404, 27);
             this.btnStartListen.Name = "btnStartListen";
-            this.btnStartListen.Size = new System.Drawing.Size(138, 34);
+            this.btnStartListen.Size = new System.Drawing.Size(138, 40);
             this.btnStartListen.TabIndex = 5;
             this.btnStartListen.Text = "Start Listening";
             this.btnStartListen.UseVisualStyleBackColor = true;
@@ -227,7 +244,7 @@
             this.chkDecodeEncryption.AutoSize = true;
             this.chkDecodeEncryption.Checked = true;
             this.chkDecodeEncryption.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDecodeEncryption.Location = new System.Drawing.Point(559, 75);
+            this.chkDecodeEncryption.Location = new System.Drawing.Point(548, 97);
             this.chkDecodeEncryption.Name = "chkDecodeEncryption";
             this.chkDecodeEncryption.Size = new System.Drawing.Size(114, 17);
             this.chkDecodeEncryption.TabIndex = 8;
@@ -239,7 +256,7 @@
             this.chkLog.AutoSize = true;
             this.chkLog.Checked = true;
             this.chkLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLog.Location = new System.Drawing.Point(559, 45);
+            this.chkLog.Location = new System.Drawing.Point(548, 76);
             this.chkLog.Name = "chkLog";
             this.chkLog.Size = new System.Drawing.Size(113, 17);
             this.chkLog.TabIndex = 15;
@@ -248,42 +265,52 @@
             // 
             // btnStopListen
             // 
-            this.btnStopListen.Location = new System.Drawing.Point(404, 75);
+            this.btnStopListen.Location = new System.Drawing.Point(404, 74);
             this.btnStopListen.Name = "btnStopListen";
-            this.btnStopListen.Size = new System.Drawing.Size(138, 30);
+            this.btnStopListen.Size = new System.Drawing.Size(138, 40);
             this.btnStopListen.TabIndex = 16;
             this.btnStopListen.Text = "Stop Listening";
             this.btnStopListen.UseVisualStyleBackColor = true;
             this.btnStopListen.Click += new System.EventHandler(this.btnStopListen_Click);
             // 
-            // toolsToolStripMenuItem
+            // btnClearOutgoing
             // 
-            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.sendDataToolStripMenuItem,
-            this.b64VL64HelperToolStripMenuItem});
-            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
-            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
-            this.toolsToolStripMenuItem.Text = "Tools";
+            this.btnClearOutgoing.Location = new System.Drawing.Point(648, 558);
+            this.btnClearOutgoing.Name = "btnClearOutgoing";
+            this.btnClearOutgoing.Size = new System.Drawing.Size(124, 23);
+            this.btnClearOutgoing.TabIndex = 17;
+            this.btnClearOutgoing.Text = "Clear Log";
+            this.btnClearOutgoing.UseVisualStyleBackColor = true;
+            this.btnClearOutgoing.Click += new System.EventHandler(this.btnClearOutgoing_Click);
             // 
-            // sendDataToolStripMenuItem
+            // btnClearIncoming
             // 
-            this.sendDataToolStripMenuItem.Name = "sendDataToolStripMenuItem";
-            this.sendDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.sendDataToolStripMenuItem.Text = "Send data";
-            this.sendDataToolStripMenuItem.Click += new System.EventHandler(this.sendDataToolStripMenuItem_Click);
+            this.btnClearIncoming.Location = new System.Drawing.Point(254, 558);
+            this.btnClearIncoming.Name = "btnClearIncoming";
+            this.btnClearIncoming.Size = new System.Drawing.Size(124, 23);
+            this.btnClearIncoming.TabIndex = 18;
+            this.btnClearIncoming.Text = "Clear Log";
+            this.btnClearIncoming.UseVisualStyleBackColor = true;
+            this.btnClearIncoming.Click += new System.EventHandler(this.btnClearIncoming_Click);
             // 
-            // b64VL64HelperToolStripMenuItem
+            // btnSendData
             // 
-            this.b64VL64HelperToolStripMenuItem.Name = "b64VL64HelperToolStripMenuItem";
-            this.b64VL64HelperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.b64VL64HelperToolStripMenuItem.Text = "B64/VL64 Helper";
-            this.b64VL64HelperToolStripMenuItem.Click += new System.EventHandler(this.b64VL64HelperToolStripMenuItem_Click);
+            this.btnSendData.Location = new System.Drawing.Point(548, 27);
+            this.btnSendData.Name = "btnSendData";
+            this.btnSendData.Size = new System.Drawing.Size(138, 40);
+            this.btnSendData.TabIndex = 19;
+            this.btnSendData.Text = "Send Data to Sockets";
+            this.btnSendData.UseVisualStyleBackColor = true;
+            this.btnSendData.Click += new System.EventHandler(this.btnSendData_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 587);
+            this.Controls.Add(this.btnSendData);
+            this.Controls.Add(this.btnClearIncoming);
+            this.Controls.Add(this.btnClearOutgoing);
             this.Controls.Add(this.btnStopListen);
             this.Controls.Add(this.chkLog);
             this.Controls.Add(this.chkDecodeEncryption);
@@ -339,8 +366,10 @@
         public System.Windows.Forms.CheckBox chkLog;
         private System.Windows.Forms.Button btnStopListen;
         private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem sendDataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem b64VL64HelperToolStripMenuItem;
+        private System.Windows.Forms.Button btnClearOutgoing;
+        private System.Windows.Forms.Button btnClearIncoming;
+        private System.Windows.Forms.Button btnSendData;
     }
 }
 

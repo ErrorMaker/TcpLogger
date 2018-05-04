@@ -39,7 +39,7 @@ namespace JewLogger
         {
             Form = this;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
-            this.sendDataToolStripMenuItem.Enabled = false;
+            this.btnSendData.Enabled = false;
 
             this.btnStartListen.Enabled = true;
             this.btnStopListen.Enabled = false;
@@ -70,7 +70,7 @@ namespace JewLogger
 
                 this.btnStartListen.Enabled = false;
                 this.btnStopListen.Enabled = true;
-                this.sendDataToolStripMenuItem.Enabled = true;
+                this.btnSendData.Enabled = true;
 
             }
             catch (Exception ex)
@@ -114,18 +114,18 @@ namespace JewLogger
                 return;
             }
 
-                _serverStarted = false;
+            _serverStarted = false;
 
-                try
-                {
+            try
+            {
                 _tcpForwarder.Close(_tcpForwarder, _tcpForwarder.DestinationState);
-                }
-                catch (Exception ex) { MessageBox.Show(ex.ToString()); }
-          
+            }
+            catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+
 
             this.btnStartListen.Enabled = true;
             this.btnStopListen.Enabled = false;
-            this.sendDataToolStripMenuItem.Enabled = false;
+            this.btnSendData.Enabled = false;
         }
 
         public static void AppendOutgoingTextBox(frmMain instance, string value)
@@ -164,7 +164,7 @@ namespace JewLogger
 
             TextBox textBox = instance.txtIncomingData;
             int position = textBox.SelectionStart;
-      
+
             textBox.Text += value;
 
             if (instance.chkIncomingAutoscroll.Checked)
@@ -185,16 +185,25 @@ namespace JewLogger
             frm.Show();
         }
 
-
-        private void sendDataToolStripMenuItem_Click(object sender, EventArgs e)
+        private void b64VL64HelperToolStripMenuItem_Click(object sender, EventArgs e)
         {
-  frmSending frm = new frmSending();
+            frmEncoder frm = new frmEncoder();
             frm.Show();
         }
 
-        private void b64VL64HelperToolStripMenuItem_Click(object sender, EventArgs e)
+        private void btnClearIncoming_Click(object sender, EventArgs e)
         {
-      frmEncoder frm = new frmEncoder();
+            txtIncomingData.Text = string.Empty;
+        }
+
+        private void btnClearOutgoing_Click(object sender, EventArgs e)
+        {
+            txtOutgoingData.Text = string.Empty;
+        }
+
+        private void btnSendData_Click(object sender, EventArgs e)
+        {
+            frmSending frm = new frmSending();
             frm.Show();
         }
     }
