@@ -10,8 +10,9 @@ If you get offended at the name, I'm not sorry. Its purpose is to be provocative
 
 ## Features ##
 
-- Log incoming packets
-- Log outgoing packets
+- Log incoming packets to program window
+- Log outgoing packets to program window
+- Logs packets to file
 - Send packets to client
 - Send packets to server
 - Added VL64/B64 helper
