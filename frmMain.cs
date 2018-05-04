@@ -12,12 +12,13 @@ using System.Windows.Forms;
 
 namespace JewLogger
 {
-    public partial class Form1 : Form
+    public partial class frmMain : Form
     {
         private bool _serverStarted = false;
         private TcpForwarderSlim _tcpForwarder;
         private Thread _listenerThread;
-        public static Form1 frmMain;
+
+        public static frmMain Form;
 
         public TcpForwarderSlim TcpForwarder
         {
@@ -25,14 +26,14 @@ namespace JewLogger
         }
 
 
-        public Form1()
+        public frmMain()
         {
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            frmMain = this;
+            Form = this;
             this.btnStartListen.Enabled = true;
         }
 
@@ -103,11 +104,11 @@ namespace JewLogger
             this.btnStartListen.Enabled = true;
         }
 
-        public static void AppendOutgoingTextBox(Form1 instance, string value)
+        public static void AppendOutgoingTextBox(frmMain instance, string value)
         {
             if (instance.InvokeRequired)
             {
-                instance.Invoke(new Action<Form1, string>(AppendOutgoingTextBox), new object[] { instance, value });
+                instance.Invoke(new Action<frmMain, string>(AppendOutgoingTextBox), new object[] { instance, value });
                 return;
             }
 
@@ -129,11 +130,11 @@ namespace JewLogger
 
         }
 
-        public static void AppendIncomingTextBox(Form1 instance, string value)
+        public static void AppendIncomingTextBox(frmMain instance, string value)
         {
             if (instance.InvokeRequired)
             {
-                instance.Invoke(new Action<Form1, string>(AppendIncomingTextBox), new object[] { instance, value });
+                instance.Invoke(new Action<frmMain, string>(AppendIncomingTextBox), new object[] { instance, value });
                 return;
             }
 

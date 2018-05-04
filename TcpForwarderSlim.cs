@@ -13,8 +13,7 @@ namespace JewLogger
 {
     public class TcpForwarderSlim
     {
-        private Form1 _mainForm;
-        private State _state;
+        private frmMain _mainForm;
         private Socket _mainSocket;
         private TcpForwarderSlim _destination;
         private rc4Provider _rc4Provider;
@@ -44,7 +43,7 @@ namespace JewLogger
             get { return this._destination; }
         }
 
-        public TcpForwarderSlim(Form1 mainForm, bool incoming)
+        public TcpForwarderSlim(frmMain mainForm, bool incoming)
         {
             this._mainForm = mainForm;
             this._mainSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
@@ -116,12 +115,12 @@ namespace JewLogger
 
                         if (this._incoming)
                         {
-                            Form1.AppendIncomingTextBox(this._mainForm, "- " + outputStr + Environment.NewLine);
+                            frmMain.AppendIncomingTextBox(this._mainForm, "- " + outputStr + Environment.NewLine);
                             File.AppendAllText("packet.log", "INCOMING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
                         }
                         else
                         {
-                            Form1.AppendOutgoingTextBox(this._mainForm, "- " + outputStr + Environment.NewLine);
+                            frmMain.AppendOutgoingTextBox(this._mainForm, "- " + outputStr + Environment.NewLine);
                             File.AppendAllText("packet.log", "OUTGOING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
                         }
                     }
@@ -181,7 +180,7 @@ namespace JewLogger
                     String encodeKey = packet.Substring(2);
                     File.AppendAllText("packet.log", "ENCODE KEY: " + encodeKey + Environment.NewLine + Environment.NewLine);
 
-                    Form1.frmMain.TcpForwarder._rc4Provider = new rc4Provider(encodeKey);
+                    frmMain.Form.TcpForwarder._rc4Provider = new rc4Provider(encodeKey);
                 }
 
                 packets.Add(packet + (char)1);

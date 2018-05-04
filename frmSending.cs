@@ -26,7 +26,7 @@ namespace JewLogger
 
             try
             {
-                Form1.frmMain.TcpForwarder.DestinationState.SourceSocket.Send(data, data.Length, SocketFlags.None);
+                frmMain.Form.TcpForwarder.DestinationState.SourceSocket.Send(data, data.Length, SocketFlags.None);
             }
             catch (Exception ex)
             {
@@ -40,7 +40,7 @@ namespace JewLogger
             byte[] data = Encoding.Default.GetBytes(sendPacket);
             try
             {
-                Form1.frmMain.TcpForwarder.DestinationState.DestinationSocket.Send(data, data.Length, SocketFlags.None);
+                frmMain.Form.TcpForwarder.DestinationState.DestinationSocket.Send(data, data.Length, SocketFlags.None);
             }
             catch (Exception ex)
             {
