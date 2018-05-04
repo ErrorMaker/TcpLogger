@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmMain));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
@@ -106,7 +107,7 @@
             this.txtLocalAddress.Location = new System.Drawing.Point(116, 42);
             this.txtLocalAddress.Name = "txtLocalAddress";
             this.txtLocalAddress.Size = new System.Drawing.Size(142, 20);
-            this.txtLocalAddress.TabIndex = 3;
+            this.txtLocalAddress.TabIndex = 1;
             this.txtLocalAddress.Text = "localhost";
             // 
             // txtLocalPort
@@ -114,7 +115,7 @@
             this.txtLocalPort.Location = new System.Drawing.Point(296, 42);
             this.txtLocalPort.Name = "txtLocalPort";
             this.txtLocalPort.Size = new System.Drawing.Size(176, 20);
-            this.txtLocalPort.TabIndex = 4;
+            this.txtLocalPort.TabIndex = 2;
             this.txtLocalPort.Text = "12321";
             // 
             // label3
@@ -134,14 +135,14 @@
             this.txtIncomingData.Multiline = true;
             this.txtIncomingData.Name = "txtIncomingData";
             this.txtIncomingData.Size = new System.Drawing.Size(383, 410);
-            this.txtIncomingData.TabIndex = 6;
+            this.txtIncomingData.TabIndex = 10;
             // 
             // btnStartListen
             // 
-            this.btnStartListen.Location = new System.Drawing.Point(649, 42);
+            this.btnStartListen.Location = new System.Drawing.Point(505, 44);
             this.btnStartListen.Name = "btnStartListen";
             this.btnStartListen.Size = new System.Drawing.Size(138, 67);
-            this.btnStartListen.TabIndex = 7;
+            this.btnStartListen.TabIndex = 5;
             this.btnStartListen.Text = "Start Listening";
             this.btnStartListen.UseVisualStyleBackColor = true;
             this.btnStartListen.Click += new System.EventHandler(this.btnStartListen_Click);
@@ -151,7 +152,7 @@
             this.txtRemotePort.Location = new System.Drawing.Point(296, 68);
             this.txtRemotePort.Name = "txtRemotePort";
             this.txtRemotePort.Size = new System.Drawing.Size(176, 20);
-            this.txtRemotePort.TabIndex = 12;
+            this.txtRemotePort.TabIndex = 4;
             this.txtRemotePort.Text = "1232";
             // 
             // txtRemoteAddress
@@ -159,7 +160,7 @@
             this.txtRemoteAddress.Location = new System.Drawing.Point(116, 68);
             this.txtRemoteAddress.Name = "txtRemoteAddress";
             this.txtRemoteAddress.Size = new System.Drawing.Size(142, 20);
-            this.txtRemoteAddress.TabIndex = 11;
+            this.txtRemoteAddress.TabIndex = 3;
             this.txtRemoteAddress.Text = "localhost";
             // 
             // label4
@@ -187,7 +188,7 @@
             this.txtOutgoingData.Multiline = true;
             this.txtOutgoingData.Name = "txtOutgoingData";
             this.txtOutgoingData.Size = new System.Drawing.Size(383, 410);
-            this.txtOutgoingData.TabIndex = 13;
+            this.txtOutgoingData.TabIndex = 11;
             // 
             // label6
             // 
@@ -207,7 +208,7 @@
             this.chkOutgoingAutoscroll.Location = new System.Drawing.Point(404, 554);
             this.chkOutgoingAutoscroll.Name = "chkOutgoingAutoscroll";
             this.chkOutgoingAutoscroll.Size = new System.Drawing.Size(75, 17);
-            this.chkOutgoingAutoscroll.TabIndex = 17;
+            this.chkOutgoingAutoscroll.TabIndex = 9;
             this.chkOutgoingAutoscroll.Text = "Auto scroll";
             this.chkOutgoingAutoscroll.UseVisualStyleBackColor = true;
             // 
@@ -219,7 +220,7 @@
             this.chkIncomingAutoscroll.Location = new System.Drawing.Point(15, 554);
             this.chkIncomingAutoscroll.Name = "chkIncomingAutoscroll";
             this.chkIncomingAutoscroll.Size = new System.Drawing.Size(75, 17);
-            this.chkIncomingAutoscroll.TabIndex = 18;
+            this.chkIncomingAutoscroll.TabIndex = 7;
             this.chkIncomingAutoscroll.Text = "Auto scroll";
             this.chkIncomingAutoscroll.UseVisualStyleBackColor = true;
             // 
@@ -231,22 +232,22 @@
             this.chkDecodeEncryption.Location = new System.Drawing.Point(96, 554);
             this.chkDecodeEncryption.Name = "chkDecodeEncryption";
             this.chkDecodeEncryption.Size = new System.Drawing.Size(114, 17);
-            this.chkDecodeEncryption.TabIndex = 19;
+            this.chkDecodeEncryption.TabIndex = 8;
             this.chkDecodeEncryption.Text = "Decode encrypton";
             this.chkDecodeEncryption.UseVisualStyleBackColor = true;
             this.chkDecodeEncryption.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(505, 42);
+            this.button1.Location = new System.Drawing.Point(649, 44);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(138, 67);
-            this.button1.TabIndex = 20;
+            this.button1.TabIndex = 6;
             this.button1.Text = "Send Data";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // Form1
+            // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -269,9 +270,10 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.menuStrip1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "Form1";
-            this.Text = "Form1";
+            this.Name = "frmMain";
+            this.Text = "JewLogger - A MITM Packetlogger";
             this.Load += new System.EventHandler(this.Form1_Load);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
