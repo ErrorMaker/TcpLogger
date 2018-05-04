@@ -32,7 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.aboutToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.txtLocalAddress = new System.Windows.Forms.TextBox();
@@ -49,10 +48,11 @@
             this.chkOutgoingAutoscroll = new System.Windows.Forms.CheckBox();
             this.chkIncomingAutoscroll = new System.Windows.Forms.CheckBox();
             this.chkDecodeEncryption = new System.Windows.Forms.CheckBox();
-            this.btnSendData = new System.Windows.Forms.Button();
             this.chkLog = new System.Windows.Forms.CheckBox();
             this.btnStopListen = new System.Windows.Forms.Button();
-            this.b64VL64EncoderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sendDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.b64VL64HelperToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -77,7 +77,7 @@
             // menuStrip1
             // 
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.fileToolStripMenuItem,
+            this.toolsToolStripMenuItem,
             this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -85,16 +85,9 @@
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // fileToolStripMenuItem
-            // 
-            this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
-            this.fileToolStripMenuItem.Text = "File";
-            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.b64VL64EncoderToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -144,7 +137,7 @@
             // 
             // btnStartListen
             // 
-            this.btnStartListen.Location = new System.Drawing.Point(404, 27);
+            this.btnStartListen.Location = new System.Drawing.Point(404, 35);
             this.btnStartListen.Name = "btnStartListen";
             this.btnStartListen.Size = new System.Drawing.Size(138, 34);
             this.btnStartListen.TabIndex = 5;
@@ -234,29 +227,19 @@
             this.chkDecodeEncryption.AutoSize = true;
             this.chkDecodeEncryption.Checked = true;
             this.chkDecodeEncryption.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDecodeEncryption.Location = new System.Drawing.Point(96, 558);
+            this.chkDecodeEncryption.Location = new System.Drawing.Point(559, 75);
             this.chkDecodeEncryption.Name = "chkDecodeEncryption";
             this.chkDecodeEncryption.Size = new System.Drawing.Size(114, 17);
             this.chkDecodeEncryption.TabIndex = 8;
             this.chkDecodeEncryption.Text = "Decode encrypton";
             this.chkDecodeEncryption.UseVisualStyleBackColor = true;
             // 
-            // btnSendData
-            // 
-            this.btnSendData.Location = new System.Drawing.Point(548, 27);
-            this.btnSendData.Name = "btnSendData";
-            this.btnSendData.Size = new System.Drawing.Size(142, 34);
-            this.btnSendData.TabIndex = 6;
-            this.btnSendData.Text = "Send Data";
-            this.btnSendData.UseVisualStyleBackColor = true;
-            this.btnSendData.Click += new System.EventHandler(this.btnSendData_Click);
-            // 
             // chkLog
             // 
             this.chkLog.AutoSize = true;
             this.chkLog.Checked = true;
             this.chkLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLog.Location = new System.Drawing.Point(548, 77);
+            this.chkLog.Location = new System.Drawing.Point(559, 45);
             this.chkLog.Name = "chkLog";
             this.chkLog.Size = new System.Drawing.Size(113, 17);
             this.chkLog.TabIndex = 15;
@@ -265,7 +248,7 @@
             // 
             // btnStopListen
             // 
-            this.btnStopListen.Location = new System.Drawing.Point(404, 69);
+            this.btnStopListen.Location = new System.Drawing.Point(404, 75);
             this.btnStopListen.Name = "btnStopListen";
             this.btnStopListen.Size = new System.Drawing.Size(138, 30);
             this.btnStopListen.TabIndex = 16;
@@ -273,12 +256,28 @@
             this.btnStopListen.UseVisualStyleBackColor = true;
             this.btnStopListen.Click += new System.EventHandler(this.btnStopListen_Click);
             // 
-            // b64VL64EncoderToolStripMenuItem
+            // toolsToolStripMenuItem
             // 
-            this.b64VL64EncoderToolStripMenuItem.Name = "b64VL64EncoderToolStripMenuItem";
-            this.b64VL64EncoderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.b64VL64EncoderToolStripMenuItem.Text = "B64/VL64 Encoder";
-            this.b64VL64EncoderToolStripMenuItem.Click += new System.EventHandler(this.b64VL64EncoderToolStripMenuItem_Click);
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.sendDataToolStripMenuItem,
+            this.b64VL64HelperToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(47, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // sendDataToolStripMenuItem
+            // 
+            this.sendDataToolStripMenuItem.Name = "sendDataToolStripMenuItem";
+            this.sendDataToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.sendDataToolStripMenuItem.Text = "Send data";
+            this.sendDataToolStripMenuItem.Click += new System.EventHandler(this.sendDataToolStripMenuItem_Click);
+            // 
+            // b64VL64HelperToolStripMenuItem
+            // 
+            this.b64VL64HelperToolStripMenuItem.Name = "b64VL64HelperToolStripMenuItem";
+            this.b64VL64HelperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.b64VL64HelperToolStripMenuItem.Text = "B64/VL64 Helper";
+            this.b64VL64HelperToolStripMenuItem.Click += new System.EventHandler(this.b64VL64HelperToolStripMenuItem_Click);
             // 
             // frmMain
             // 
@@ -287,7 +286,6 @@
             this.ClientSize = new System.Drawing.Size(800, 587);
             this.Controls.Add(this.btnStopListen);
             this.Controls.Add(this.chkLog);
-            this.Controls.Add(this.btnSendData);
             this.Controls.Add(this.chkDecodeEncryption);
             this.Controls.Add(this.chkIncomingAutoscroll);
             this.Controls.Add(this.chkOutgoingAutoscroll);
@@ -322,7 +320,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.MenuStrip menuStrip1;
-        private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem helpToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem aboutToolStripMenuItem;
         private System.Windows.Forms.TextBox txtLocalAddress;
@@ -339,10 +336,11 @@
         public System.Windows.Forms.CheckBox chkOutgoingAutoscroll;
         public System.Windows.Forms.CheckBox chkIncomingAutoscroll;
         public System.Windows.Forms.CheckBox chkDecodeEncryption;
-        private System.Windows.Forms.Button btnSendData;
         public System.Windows.Forms.CheckBox chkLog;
         private System.Windows.Forms.Button btnStopListen;
-        private System.Windows.Forms.ToolStripMenuItem b64VL64EncoderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sendDataToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem b64VL64HelperToolStripMenuItem;
     }
 }
 

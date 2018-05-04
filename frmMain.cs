@@ -39,10 +39,10 @@ namespace JewLogger
         {
             Form = this;
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
+            this.sendDataToolStripMenuItem.Enabled = false;
 
             this.btnStartListen.Enabled = true;
             this.btnStopListen.Enabled = false;
-            this.btnSendData.Enabled = false;
 
             this.txtIncomingData.ScrollBars = ScrollBars.Vertical;
             this.txtIncomingData.ReadOnly = true;
@@ -70,7 +70,7 @@ namespace JewLogger
 
                 this.btnStartListen.Enabled = false;
                 this.btnStopListen.Enabled = true;
-                this.btnSendData.Enabled = true;
+                this.sendDataToolStripMenuItem.Enabled = true;
 
             }
             catch (Exception ex)
@@ -125,7 +125,7 @@ namespace JewLogger
 
             this.btnStartListen.Enabled = true;
             this.btnStopListen.Enabled = false;
-            this.btnSendData.Enabled = false;
+            this.sendDataToolStripMenuItem.Enabled = false;
         }
 
         public static void AppendOutgoingTextBox(frmMain instance, string value)
@@ -179,21 +179,22 @@ namespace JewLogger
             }
         }
 
-        private void btnSendData_Click(object sender, EventArgs e)
-        {
-            frmSending frm = new frmSending();
-            frm.Show();
-        }
-
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmAbout frm = new frmAbout();
             frm.Show();
         }
 
-        private void b64VL64EncoderToolStripMenuItem_Click(object sender, EventArgs e)
+
+        private void sendDataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmEncoder frm = new frmEncoder();
+  frmSending frm = new frmSending();
+            frm.Show();
+        }
+
+        private void b64VL64HelperToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+      frmEncoder frm = new frmEncoder();
             frm.Show();
         }
     }

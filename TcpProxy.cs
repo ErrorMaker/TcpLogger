@@ -93,7 +93,7 @@ namespace JewLogger
                         }
                     }
 
-                    List<string> packets = new List<string>();
+                    List<PacketSummary> packets = new List<PacketSummary>();
 
                     if (this._incoming)
                     {
@@ -104,9 +104,9 @@ namespace JewLogger
                         packets.AddRange(HandleOutgoingData(str));
                     }
 
-                    foreach (string packet in packets)
+                    foreach (PacketSummary packet in packets)
                     {
-                        string outputStr = packet;
+                        string outputStr = packet.Data;
 
                         for (int i = 0; i < 13; i++)
                         {
@@ -115,21 +115,39 @@ namespace JewLogger
 
                         if (this._incoming)
                         {
-                            frmMain.AppendIncomingTextBox(frmMain.Form, "- " + outputStr + Environment.NewLine);
+                            frmMain.AppendIncomingTextBox(frmMain.Form, "- " + packet.HeaderId + " / " + packet.Header + Environment.NewLine);
+                            frmMain.AppendIncomingTextBox(frmMain.Form, outputStr + Environment.NewLine + Environment.NewLine);
 
                         }
                         else
                         {
-                            frmMain.AppendOutgoingTextBox(frmMain.Form, "- " + outputStr + Environment.NewLine);
+                            frmMain.AppendOutgoingTextBox(frmMain.Form, "- " + packet.HeaderId + " / " + packet.Header + Environment.NewLine);
+                            frmMain.AppendOutgoingTextBox(frmMain.Form, outputStr + Environment.NewLine + Environment.NewLine);
                         }
 
                         if (frmMain.Form.chkLog.Checked)
                         {
                             File.AppendAllText("packet.log", "INCOMING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
                         }
+
+
+                        string response;
+
+                        if (this._incoming)
+                        {
+                            response = packet.Header + packet.Data;
+                            response = "@" + Base64Encoding.EncodeInt32(response.Length, 2) + response;
+                        }
+                        else
+                        {
+                            response = packet.Header + packet.Data;
+                        }
+
+                        byte[] processSend = Encoding.Default.GetBytes(response);
+                        state.DestinationSocket.Send(processSend, processSend.Length, SocketFlags.None);
                     }
 
-                    state.DestinationSocket.Send(state.Buffer, bytesRead, SocketFlags.None);
+                    //state.DestinationSocket.Send(state.Buffer, bytesRead, SocketFlags.None);
                     state.SourceSocket.BeginReceive(state.Buffer, 0, state.Buffer.Length, 0, OnDataReceive, state);
 
                 }
@@ -140,9 +158,9 @@ namespace JewLogger
             }
         }
 
-        private List<string> HandleIncomingData(string str)
+        private List<PacketSummary> HandleIncomingData(string str)
         {
-            List<string> packets = new List<string>();
+            List<PacketSummary> packets = new List<PacketSummary>();
 
             try
             {
@@ -153,7 +171,11 @@ namespace JewLogger
                     int recieveLength = Base64Encoding.DecodeInt32(str.Substring(amountRead, 3));
                     amountRead += 3;
 
-                    packets.Add(str.Substring(amountRead, recieveLength));
+                    string packet = str.Substring(amountRead, recieveLength);
+
+                    PacketSummary summary = new PacketSummary(packet.Substring(0, 2), (packet.Substring(0, 2).Length > 0 ? packet.Substring(2) : ""));
+                    packets.Add(summary);
+
                     amountRead += recieveLength;
                 }
             }
@@ -162,27 +184,32 @@ namespace JewLogger
             return packets;
         }
 
-        private List<string> HandleOutgoingData(string str)
+        private List<PacketSummary> HandleOutgoingData(string str)
         {
-            List<string> packets = new List<string>();
+            List<PacketSummary> packets = new List<PacketSummary>();
 
-            foreach (string packet in str.Split(new char[] { (char)1 }))
+            try
             {
-                if (packet.Length == 0)
+                foreach (string packet in str.Split(new char[] { (char)1 }))
                 {
-                    continue;
+                    if (packet.Length < 2)
+                    {
+                        continue;
+                    }
+
+                    String newPacket = packet.Replace("" + (char)1, "");
+
+                    if (newPacket.StartsWith("@A") && frmMain.Form.chkDecodeEncryption.Checked)
+                    {
+                        String encodeKey = packet.Substring(2);
+                        frmMain.Form.TcpForwarder._rc4Provider = new rc4Provider(encodeKey);
+                    }
+
+                    PacketSummary summary = new PacketSummary(packet.Substring(0, 2), (packet.Substring(0, 2).Length > 0 ? packet.Substring(2) : "") + (char)1);
+                    packets.Add(summary);
                 }
-
-                String newPacket = packet.Replace("" + (char)1, "");
-
-                if (newPacket.StartsWith("@A") && frmMain.Form.chkDecodeEncryption.Checked)
-                {
-                    String encodeKey = packet.Substring(2);
-                    frmMain.Form.TcpForwarder._rc4Provider = new rc4Provider(encodeKey);
-                }
-
-                packets.Add(packet + (char)1);
             }
+            catch { }
 
             return packets;
         }
@@ -219,7 +246,21 @@ namespace JewLogger
             {
                 SourceSocket = source;
                 DestinationSocket = destination;
-                Buffer = new byte[8192];
+                Buffer = new byte[4096];
+            }
+        }
+
+        public class PacketSummary
+        {
+            public int HeaderId { get; private set; }
+            public string Header { get; private set; }
+            public string Data { get; private set; }
+
+            public PacketSummary(string Header, string Data)
+            {
+                this.Header = Header;
+                this.HeaderId = Base64Encoding.DecodeInt32(this.Header);
+                this.Data = Data;
             }
         }
     }
