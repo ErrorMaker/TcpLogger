@@ -40,9 +40,15 @@ namespace JewLogger
             Form = this;
             this.btnStartListen.Enabled = true;
             this.btnStopListen.Enabled = false;
+            this.btnSendData.Enabled = false;
 
             this.txtIncomingData.ScrollBars = ScrollBars.Vertical;
+            this.txtIncomingData.ReadOnly = true;
+            this.txtIncomingData.BackColor = Color.White;
+
             this.txtOutgoingData.ScrollBars = ScrollBars.Vertical;
+            this.txtOutgoingData.ReadOnly = true;
+            this.txtOutgoingData.BackColor = Color.White;
         }
 
         private void btnStartListen_Click(object sender, EventArgs e)
@@ -62,6 +68,7 @@ namespace JewLogger
 
                 this.btnStartListen.Enabled = false;
                 this.btnStopListen.Enabled = true;
+                this.btnSendData.Enabled = true;
 
             }
             catch (Exception ex)
@@ -116,6 +123,7 @@ namespace JewLogger
 
             this.btnStartListen.Enabled = true;
             this.btnStopListen.Enabled = false;
+            this.btnSendData.Enabled = false;
         }
 
         public static void AppendOutgoingTextBox(frmMain instance, string value)
@@ -169,18 +177,14 @@ namespace JewLogger
             }
         }
 
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSendData_Click(object sender, EventArgs e)
         {
             frmSending frm = new frmSending();
             frm.Show();
         }
 
-        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+
+        private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
 
         }

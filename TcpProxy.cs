@@ -113,24 +113,19 @@ namespace JewLogger
                             outputStr = outputStr.Replace("" + (char)i, "{" + i + "}");
                         }
 
-
                         if (this._incoming)
                         {
                             frmMain.AppendIncomingTextBox(frmMain.Form, "- " + outputStr + Environment.NewLine);
 
-                            if (frmMain.Form.chkLog.Checked)
-                            {
-                                File.AppendAllText("packet.log", "INCOMING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
-                            }
                         }
                         else
                         {
                             frmMain.AppendOutgoingTextBox(frmMain.Form, "- " + outputStr + Environment.NewLine);
+                        }
 
-                            if (frmMain.Form.chkLog.Checked)
-                            {
-                                File.AppendAllText("packet.log", "OUTGOING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
-                            }
+                        if (frmMain.Form.chkLog.Checked)
+                        {
+                            File.AppendAllText("packet.log", "INCOMING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
                         }
                     }
 

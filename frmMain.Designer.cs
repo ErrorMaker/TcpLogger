@@ -49,7 +49,7 @@
             this.chkOutgoingAutoscroll = new System.Windows.Forms.CheckBox();
             this.chkIncomingAutoscroll = new System.Windows.Forms.CheckBox();
             this.chkDecodeEncryption = new System.Windows.Forms.CheckBox();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnSendData = new System.Windows.Forms.Button();
             this.chkLog = new System.Windows.Forms.CheckBox();
             this.btnStopListen = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
@@ -83,7 +83,6 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
-            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -102,8 +101,9 @@
             // aboutToolStripMenuItem
             // 
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(107, 22);
+            this.aboutToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.aboutToolStripMenuItem.Text = "About";
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
             // 
             // txtLocalAddress
             // 
@@ -144,7 +144,7 @@
             // 
             this.btnStartListen.Location = new System.Drawing.Point(404, 27);
             this.btnStartListen.Name = "btnStartListen";
-            this.btnStartListen.Size = new System.Drawing.Size(138, 67);
+            this.btnStartListen.Size = new System.Drawing.Size(138, 34);
             this.btnStartListen.TabIndex = 5;
             this.btnStartListen.Text = "Start Listening";
             this.btnStartListen.UseVisualStyleBackColor = true;
@@ -187,7 +187,7 @@
             // txtOutgoingData
             // 
             this.txtOutgoingData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtOutgoingData.Location = new System.Drawing.Point(404, 142);
+            this.txtOutgoingData.Location = new System.Drawing.Point(405, 142);
             this.txtOutgoingData.Multiline = true;
             this.txtOutgoingData.Name = "txtOutgoingData";
             this.txtOutgoingData.Size = new System.Drawing.Size(383, 410);
@@ -238,35 +238,34 @@
             this.chkDecodeEncryption.TabIndex = 8;
             this.chkDecodeEncryption.Text = "Decode encrypton";
             this.chkDecodeEncryption.UseVisualStyleBackColor = true;
-            this.chkDecodeEncryption.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
-            // button1
+            // btnSendData
             // 
-            this.button1.Location = new System.Drawing.Point(692, 27);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(95, 67);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Send Data";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnSendData.Location = new System.Drawing.Point(548, 27);
+            this.btnSendData.Name = "btnSendData";
+            this.btnSendData.Size = new System.Drawing.Size(142, 34);
+            this.btnSendData.TabIndex = 6;
+            this.btnSendData.Text = "Send Data";
+            this.btnSendData.UseVisualStyleBackColor = true;
+            this.btnSendData.Click += new System.EventHandler(this.btnSendData_Click);
             // 
             // chkLog
             // 
             this.chkLog.AutoSize = true;
             this.chkLog.Checked = true;
             this.chkLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLog.Location = new System.Drawing.Point(15, 92);
+            this.chkLog.Location = new System.Drawing.Point(548, 77);
             this.chkLog.Name = "chkLog";
-            this.chkLog.Size = new System.Drawing.Size(172, 17);
+            this.chkLog.Size = new System.Drawing.Size(113, 17);
             this.chkLog.TabIndex = 15;
-            this.chkLog.Text = "Log packets to file (packet.log)";
+            this.chkLog.Text = "Log packets to file";
             this.chkLog.UseVisualStyleBackColor = true;
             // 
             // btnStopListen
             // 
-            this.btnStopListen.Location = new System.Drawing.Point(548, 27);
+            this.btnStopListen.Location = new System.Drawing.Point(404, 69);
             this.btnStopListen.Name = "btnStopListen";
-            this.btnStopListen.Size = new System.Drawing.Size(138, 67);
+            this.btnStopListen.Size = new System.Drawing.Size(138, 30);
             this.btnStopListen.TabIndex = 16;
             this.btnStopListen.Text = "Stop Listening";
             this.btnStopListen.UseVisualStyleBackColor = true;
@@ -279,7 +278,7 @@
             this.ClientSize = new System.Drawing.Size(800, 587);
             this.Controls.Add(this.btnStopListen);
             this.Controls.Add(this.chkLog);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnSendData);
             this.Controls.Add(this.chkDecodeEncryption);
             this.Controls.Add(this.chkIncomingAutoscroll);
             this.Controls.Add(this.chkOutgoingAutoscroll);
@@ -331,7 +330,7 @@
         public System.Windows.Forms.CheckBox chkOutgoingAutoscroll;
         public System.Windows.Forms.CheckBox chkIncomingAutoscroll;
         public System.Windows.Forms.CheckBox chkDecodeEncryption;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnSendData;
         public System.Windows.Forms.CheckBox chkLog;
         private System.Windows.Forms.Button btnStopListen;
     }
