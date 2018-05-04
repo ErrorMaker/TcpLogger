@@ -8,6 +8,15 @@ By working as being a man-in-the-middle type program there is the ability to sni
 
 If you get offended at the name, I'm not sorry. Its purpose is to be provocative
 
+## Features ##
+
+- Log incoming packets
+- Log outgoing packets
+- Send packets to client
+- Send packets to server
+- Added VL64/B64 helper
+- Decrypts V13 encryption (from Woodpecker)
+
 ## Download ##
 
 See latest releases [here](https://github.com/Quackster/JewLogger/releases).
