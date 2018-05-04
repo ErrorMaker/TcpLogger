@@ -1,6 +1,6 @@
 ![JewLogger Banner](https://i.imgur.com/rKlhAwn.png)
 
-# JewLogger #
+# About #
 
 Information coming here soon...
 
