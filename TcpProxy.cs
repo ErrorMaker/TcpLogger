@@ -113,25 +113,30 @@ namespace JewLogger
                             outputStr = outputStr.Replace("" + (char)i, "{" + i + "}");
                         }
 
+                        string logData = packet.HeaderId + " / " + packet.Header + Environment.NewLine + outputStr + Environment.NewLine;// + Environment.NewLine;
+
+                        if (outputStr.Length > 0)
+                        {
+                            logData += Environment.NewLine;
+                        }
+
                         if (this._incoming)
                         {
-                            frmMain.AppendIncomingTextBox(frmMain.Form, "- " + packet.HeaderId + " / " + packet.Header + Environment.NewLine);
-                            frmMain.AppendIncomingTextBox(frmMain.Form, outputStr + Environment.NewLine + Environment.NewLine);
+                            frmMain.AppendIncomingTextBox(frmMain.Form, "- " + logData);
 
                         }
                         else
                         {
-                            frmMain.AppendOutgoingTextBox(frmMain.Form, "- " + packet.HeaderId + " / " + packet.Header + Environment.NewLine);
-                            frmMain.AppendOutgoingTextBox(frmMain.Form, outputStr + Environment.NewLine + Environment.NewLine);
+                            frmMain.AppendOutgoingTextBox(frmMain.Form, "- " + logData);
                         }
 
                         if (frmMain.Form.chkLog.Checked)
                         {
-                            File.AppendAllText("packet.log", "INCOMING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
+                            File.AppendAllText("packet.log", (this._incoming ? "INCOMING DATA: " : "OUTGOING DATA: ") + logData);
                         }
 
 
-                        string response;
+                        /*string response;
 
                         if (this._incoming)
                         {
@@ -144,10 +149,10 @@ namespace JewLogger
                         }
 
                         byte[] processSend = Encoding.Default.GetBytes(response);
-                        state.DestinationSocket.Send(processSend, processSend.Length, SocketFlags.None);
+                        state.DestinationSocket.Send(processSend, processSend.Length, SocketFlags.None);*/
                     }
 
-                    //state.DestinationSocket.Send(state.Buffer, bytesRead, SocketFlags.None);
+                    state.DestinationSocket.Send(state.Buffer, bytesRead, SocketFlags.None);
                     state.SourceSocket.BeginReceive(state.Buffer, 0, state.Buffer.Length, 0, OnDataReceive, state);
 
                 }
