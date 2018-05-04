@@ -8,6 +8,10 @@ By working as being a man-in-the-middle type program there is the ability to sni
 
 If you get offended at the name, I'm not sorry. Its purpose is to be provocative
 
+## Download ##
+
+See latest releases [here](https://github.com/Quackster/JewLogger/releases).
+
 ## Screenshots ##
 
 ![](https://i.imgur.com/FzOPvkU.png)
