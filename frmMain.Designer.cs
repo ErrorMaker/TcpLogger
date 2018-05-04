@@ -50,13 +50,15 @@
             this.chkIncomingAutoscroll = new System.Windows.Forms.CheckBox();
             this.chkDecodeEncryption = new System.Windows.Forms.CheckBox();
             this.button1 = new System.Windows.Forms.Button();
+            this.chkLog = new System.Windows.Forms.CheckBox();
+            this.btnStopListen = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 42);
+            this.label1.Location = new System.Drawing.Point(12, 38);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(87, 13);
             this.label1.TabIndex = 0;
@@ -65,7 +67,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(264, 42);
+            this.label2.Location = new System.Drawing.Point(284, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 1;
@@ -81,6 +83,7 @@
             this.menuStrip1.Size = new System.Drawing.Size(800, 24);
             this.menuStrip1.TabIndex = 2;
             this.menuStrip1.Text = "menuStrip1";
+            this.menuStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip1_ItemClicked);
             // 
             // fileToolStripMenuItem
             // 
@@ -104,7 +107,7 @@
             // 
             // txtLocalAddress
             // 
-            this.txtLocalAddress.Location = new System.Drawing.Point(116, 42);
+            this.txtLocalAddress.Location = new System.Drawing.Point(135, 35);
             this.txtLocalAddress.Name = "txtLocalAddress";
             this.txtLocalAddress.Size = new System.Drawing.Size(142, 20);
             this.txtLocalAddress.TabIndex = 1;
@@ -112,9 +115,9 @@
             // 
             // txtLocalPort
             // 
-            this.txtLocalPort.Location = new System.Drawing.Point(296, 42);
+            this.txtLocalPort.Location = new System.Drawing.Point(316, 35);
             this.txtLocalPort.Name = "txtLocalPort";
-            this.txtLocalPort.Size = new System.Drawing.Size(176, 20);
+            this.txtLocalPort.Size = new System.Drawing.Size(56, 20);
             this.txtLocalPort.TabIndex = 2;
             this.txtLocalPort.Text = "12321";
             // 
@@ -122,7 +125,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 107);
+            this.label3.Location = new System.Drawing.Point(12, 117);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(91, 13);
             this.label3.TabIndex = 5;
@@ -131,7 +134,7 @@
             // txtIncomingData
             // 
             this.txtIncomingData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtIncomingData.Location = new System.Drawing.Point(12, 132);
+            this.txtIncomingData.Location = new System.Drawing.Point(12, 142);
             this.txtIncomingData.Multiline = true;
             this.txtIncomingData.Name = "txtIncomingData";
             this.txtIncomingData.Size = new System.Drawing.Size(383, 410);
@@ -139,7 +142,7 @@
             // 
             // btnStartListen
             // 
-            this.btnStartListen.Location = new System.Drawing.Point(505, 44);
+            this.btnStartListen.Location = new System.Drawing.Point(404, 27);
             this.btnStartListen.Name = "btnStartListen";
             this.btnStartListen.Size = new System.Drawing.Size(138, 67);
             this.btnStartListen.TabIndex = 5;
@@ -149,15 +152,15 @@
             // 
             // txtRemotePort
             // 
-            this.txtRemotePort.Location = new System.Drawing.Point(296, 68);
+            this.txtRemotePort.Location = new System.Drawing.Point(316, 64);
             this.txtRemotePort.Name = "txtRemotePort";
-            this.txtRemotePort.Size = new System.Drawing.Size(176, 20);
+            this.txtRemotePort.Size = new System.Drawing.Size(56, 20);
             this.txtRemotePort.TabIndex = 4;
             this.txtRemotePort.Text = "1232";
             // 
             // txtRemoteAddress
             // 
-            this.txtRemoteAddress.Location = new System.Drawing.Point(116, 68);
+            this.txtRemoteAddress.Location = new System.Drawing.Point(135, 64);
             this.txtRemoteAddress.Name = "txtRemoteAddress";
             this.txtRemoteAddress.Size = new System.Drawing.Size(142, 20);
             this.txtRemoteAddress.TabIndex = 3;
@@ -166,7 +169,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(264, 69);
+            this.label4.Location = new System.Drawing.Point(283, 64);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 10;
@@ -175,7 +178,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(12, 69);
+            this.label5.Location = new System.Drawing.Point(12, 61);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(98, 13);
             this.label5.TabIndex = 9;
@@ -184,7 +187,7 @@
             // txtOutgoingData
             // 
             this.txtOutgoingData.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.txtOutgoingData.Location = new System.Drawing.Point(404, 132);
+            this.txtOutgoingData.Location = new System.Drawing.Point(404, 142);
             this.txtOutgoingData.Multiline = true;
             this.txtOutgoingData.Name = "txtOutgoingData";
             this.txtOutgoingData.Size = new System.Drawing.Size(383, 410);
@@ -194,7 +197,7 @@
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(401, 107);
+            this.label6.Location = new System.Drawing.Point(401, 117);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(91, 13);
             this.label6.TabIndex = 14;
@@ -205,7 +208,7 @@
             this.chkOutgoingAutoscroll.AutoSize = true;
             this.chkOutgoingAutoscroll.Checked = true;
             this.chkOutgoingAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOutgoingAutoscroll.Location = new System.Drawing.Point(404, 554);
+            this.chkOutgoingAutoscroll.Location = new System.Drawing.Point(404, 558);
             this.chkOutgoingAutoscroll.Name = "chkOutgoingAutoscroll";
             this.chkOutgoingAutoscroll.Size = new System.Drawing.Size(75, 17);
             this.chkOutgoingAutoscroll.TabIndex = 9;
@@ -217,7 +220,7 @@
             this.chkIncomingAutoscroll.AutoSize = true;
             this.chkIncomingAutoscroll.Checked = true;
             this.chkIncomingAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIncomingAutoscroll.Location = new System.Drawing.Point(15, 554);
+            this.chkIncomingAutoscroll.Location = new System.Drawing.Point(15, 558);
             this.chkIncomingAutoscroll.Name = "chkIncomingAutoscroll";
             this.chkIncomingAutoscroll.Size = new System.Drawing.Size(75, 17);
             this.chkIncomingAutoscroll.TabIndex = 7;
@@ -229,7 +232,7 @@
             this.chkDecodeEncryption.AutoSize = true;
             this.chkDecodeEncryption.Checked = true;
             this.chkDecodeEncryption.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDecodeEncryption.Location = new System.Drawing.Point(96, 554);
+            this.chkDecodeEncryption.Location = new System.Drawing.Point(96, 558);
             this.chkDecodeEncryption.Name = "chkDecodeEncryption";
             this.chkDecodeEncryption.Size = new System.Drawing.Size(114, 17);
             this.chkDecodeEncryption.TabIndex = 8;
@@ -239,19 +242,43 @@
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(649, 44);
+            this.button1.Location = new System.Drawing.Point(692, 27);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(138, 67);
+            this.button1.Size = new System.Drawing.Size(95, 67);
             this.button1.TabIndex = 6;
             this.button1.Text = "Send Data";
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // chkLog
+            // 
+            this.chkLog.AutoSize = true;
+            this.chkLog.Checked = true;
+            this.chkLog.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkLog.Location = new System.Drawing.Point(15, 92);
+            this.chkLog.Name = "chkLog";
+            this.chkLog.Size = new System.Drawing.Size(172, 17);
+            this.chkLog.TabIndex = 15;
+            this.chkLog.Text = "Log packets to file (packet.log)";
+            this.chkLog.UseVisualStyleBackColor = true;
+            // 
+            // btnStopListen
+            // 
+            this.btnStopListen.Location = new System.Drawing.Point(548, 27);
+            this.btnStopListen.Name = "btnStopListen";
+            this.btnStopListen.Size = new System.Drawing.Size(138, 67);
+            this.btnStopListen.TabIndex = 16;
+            this.btnStopListen.Text = "Stop Listening";
+            this.btnStopListen.UseVisualStyleBackColor = true;
+            this.btnStopListen.Click += new System.EventHandler(this.btnStopListen_Click);
             // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 587);
+            this.Controls.Add(this.btnStopListen);
+            this.Controls.Add(this.chkLog);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.chkDecodeEncryption);
             this.Controls.Add(this.chkIncomingAutoscroll);
@@ -305,6 +332,8 @@
         public System.Windows.Forms.CheckBox chkIncomingAutoscroll;
         public System.Windows.Forms.CheckBox chkDecodeEncryption;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.CheckBox chkLog;
+        private System.Windows.Forms.Button btnStopListen;
     }
 }
 

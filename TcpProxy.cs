@@ -11,11 +11,10 @@ using System.Windows.Forms;
 
 namespace JewLogger
 {
-    public class TcpForwarderSlim
+    public class TcpProxy
     {
-        private frmMain _mainForm;
         private Socket _mainSocket;
-        private TcpForwarderSlim _destination;
+        private TcpProxy _destination;
         private rc4Provider _rc4Provider;
 
         private State _connectState;
@@ -38,14 +37,13 @@ namespace JewLogger
             get { return this._destinationState; }
         }
 
-        public TcpForwarderSlim Destination
+        public TcpProxy Destination
         {
             get { return this._destination; }
         }
 
-        public TcpForwarderSlim(frmMain mainForm, bool incoming)
+        public TcpProxy(bool incoming)
         {
-            this._mainForm = mainForm;
             this._mainSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
             this._incoming = incoming;
             this._rc4Provider = null;
@@ -56,13 +54,16 @@ namespace JewLogger
             _mainSocket.Bind(local);
             _mainSocket.Listen(10);
 
-            while (true)
+            while (frmMain.Form.ServerConnected)
             {
-                var source = _mainSocket.Accept();
-                this._destination = new TcpForwarderSlim(this._mainForm, false);
-                _destinationState = new State(source, _destination._mainSocket);
-                _destination.Connect(remote, source);
-                source.BeginReceive(_destinationState.Buffer, 0, _destinationState.Buffer.Length, 0, OnDataReceive, _destinationState);
+                try
+                {
+                    var source = _mainSocket.Accept();
+                    this._destination = new TcpProxy(false);
+                    _destinationState = new State(source, _destination._mainSocket);
+                    _destination.Connect(remote, source);
+                    source.BeginReceive(_destinationState.Buffer, 0, _destinationState.Buffer.Length, 0, OnDataReceive, _destinationState);
+                } catch { }
             }
         }
 
@@ -115,13 +116,21 @@ namespace JewLogger
 
                         if (this._incoming)
                         {
-                            frmMain.AppendIncomingTextBox(this._mainForm, "- " + outputStr + Environment.NewLine);
-                            File.AppendAllText("packet.log", "INCOMING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
+                            frmMain.AppendIncomingTextBox(frmMain.Form, "- " + outputStr + Environment.NewLine);
+
+                            if (frmMain.Form.chkLog.Checked)
+                            {
+                                File.AppendAllText("packet.log", "INCOMING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
+                            }
                         }
                         else
                         {
-                            frmMain.AppendOutgoingTextBox(this._mainForm, "- " + outputStr + Environment.NewLine);
-                            File.AppendAllText("packet.log", "OUTGOING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
+                            frmMain.AppendOutgoingTextBox(frmMain.Form, "- " + outputStr + Environment.NewLine);
+
+                            if (frmMain.Form.chkLog.Checked)
+                            {
+                                File.AppendAllText("packet.log", "OUTGOING DATA: " + outputStr + Environment.NewLine + Environment.NewLine);
+                            }
                         }
                     }
 
@@ -132,8 +141,7 @@ namespace JewLogger
             }
             catch
             {
-                state.DestinationSocket.Close();
-                state.SourceSocket.Close();
+                Close(this, state);
             }
         }
 
@@ -154,10 +162,7 @@ namespace JewLogger
                     amountRead += recieveLength;
                 }
             }
-            catch (Exception ex)
-            {
-                MessageBox.Show(str + "\n" + ex.ToString());
-            }
+            catch {  }
 
             return packets;
         }
@@ -175,11 +180,9 @@ namespace JewLogger
 
                 String newPacket = packet.Replace("" + (char)1, "");
 
-                if (newPacket.StartsWith("@A") && _mainForm.chkDecodeEncryption.Checked)
+                if (newPacket.StartsWith("@A") && frmMain.Form.chkDecodeEncryption.Checked)
                 {
                     String encodeKey = packet.Substring(2);
-                    File.AppendAllText("packet.log", "ENCODE KEY: " + encodeKey + Environment.NewLine + Environment.NewLine);
-
                     frmMain.Form.TcpForwarder._rc4Provider = new rc4Provider(encodeKey);
                 }
 
@@ -188,6 +191,28 @@ namespace JewLogger
 
             return packets;
         }
+
+        public void Close(TcpProxy proxy, State state)
+        {
+            try
+            {
+                state.DestinationSocket.Close();
+            }
+            catch { }
+
+            try
+            {
+                state.SourceSocket.Close();
+            }
+            catch { }
+
+            try
+            {
+                proxy.Socket.Close();
+            }
+            catch { }
+        }
+
 
         public class State
         {

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSending));
             this.txtSendData = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSendToClient = new System.Windows.Forms.Button();
@@ -40,7 +41,7 @@
             this.txtSendData.Location = new System.Drawing.Point(12, 35);
             this.txtSendData.Multiline = true;
             this.txtSendData.Name = "txtSendData";
-            this.txtSendData.Size = new System.Drawing.Size(411, 145);
+            this.txtSendData.Size = new System.Drawing.Size(411, 117);
             this.txtSendData.TabIndex = 5;
             this.txtSendData.Text = "BKTest alert";
             // 
@@ -55,7 +56,7 @@
             // 
             // btnSendToClient
             // 
-            this.btnSendToClient.Location = new System.Drawing.Point(440, 44);
+            this.btnSendToClient.Location = new System.Drawing.Point(440, 35);
             this.btnSendToClient.Name = "btnSendToClient";
             this.btnSendToClient.Size = new System.Drawing.Size(115, 51);
             this.btnSendToClient.TabIndex = 6;
@@ -65,7 +66,7 @@
             // 
             // btnSendToServer
             // 
-            this.btnSendToServer.Location = new System.Drawing.Point(440, 114);
+            this.btnSendToServer.Location = new System.Drawing.Point(440, 101);
             this.btnSendToServer.Name = "btnSendToServer";
             this.btnSendToServer.Size = new System.Drawing.Size(115, 51);
             this.btnSendToServer.TabIndex = 7;
@@ -76,7 +77,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 195);
+            this.label2.Location = new System.Drawing.Point(12, 166);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(448, 26);
             this.label2.TabIndex = 8;
@@ -88,12 +89,13 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(567, 240);
+            this.ClientSize = new System.Drawing.Size(567, 207);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSendToServer);
             this.Controls.Add(this.btnSendToClient);
             this.Controls.Add(this.txtSendData);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSending";
             this.Text = "Send data to client/server";
             this.Load += new System.EventHandler(this.frmSending_Load);

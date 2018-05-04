@@ -1,6 +1,6 @@
-obj
+obj/
 JewLogger.csproj.user
-bin
+bin/
 bin/Debug/packet.log
 bin/Debug/JewLogger.exe
 bin/Debug/JewLogger.pdb

@@ -15,16 +15,20 @@ namespace JewLogger
     public partial class frmMain : Form
     {
         private bool _serverStarted = false;
-        private TcpForwarderSlim _tcpForwarder;
+        private TcpProxy _tcpForwarder;
         private Thread _listenerThread;
 
         public static frmMain Form;
 
-        public TcpForwarderSlim TcpForwarder
+        public TcpProxy TcpForwarder
         {
             get { return this._tcpForwarder; }
         }
 
+        public bool ServerConnected
+        {
+            get { return this._serverStarted; }
+        }
 
         public frmMain()
         {
@@ -35,6 +39,10 @@ namespace JewLogger
         {
             Form = this;
             this.btnStartListen.Enabled = true;
+            this.btnStopListen.Enabled = false;
+
+            this.txtIncomingData.ScrollBars = ScrollBars.Vertical;
+            this.txtOutgoingData.ScrollBars = ScrollBars.Vertical;
         }
 
         private void btnStartListen_Click(object sender, EventArgs e)
@@ -47,12 +55,13 @@ namespace JewLogger
                 }
 
                 _serverStarted = true;
-                _tcpForwarder = new TcpForwarderSlim(this, true);
+                _tcpForwarder = new TcpProxy(true);
 
                 _listenerThread = new Thread(RunListener);
                 _listenerThread.Start();
 
                 this.btnStartListen.Enabled = false;
+                this.btnStopListen.Enabled = true;
 
             }
             catch (Exception ex)
@@ -96,12 +105,17 @@ namespace JewLogger
                 return;
             }
 
-            _serverStarted = false;
+                _serverStarted = false;
 
-            _tcpForwarder.Destination.Socket.Close();
-            _tcpForwarder.Socket.Close();
+                try
+                {
+                _tcpForwarder.Close(_tcpForwarder, _tcpForwarder.DestinationState);
+                }
+                catch (Exception ex) { MessageBox.Show(ex.ToString()); }
+          
 
             this.btnStartListen.Enabled = true;
+            this.btnStopListen.Enabled = false;
         }
 
         public static void AppendOutgoingTextBox(frmMain instance, string value)
@@ -164,6 +178,11 @@ namespace JewLogger
         {
             frmSending frm = new frmSending();
             frm.Show();
+        }
+
+        private void menuStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
         }
     }
 
