@@ -18,6 +18,11 @@ namespace JewLogger
             InitializeComponent();
         }
 
+        private void frmSending_Load(object sender, EventArgs e)
+        {
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+        }
+
         private void btnSendToClient_Click(object sender, EventArgs e)
         {
 
@@ -36,7 +41,7 @@ namespace JewLogger
 
         private void btnSendToServer_Click(object sender, EventArgs e)
         {
-            string sendPacket = AddCharacters("@" + HabboEncoding.encodeB64(txtSendData.Text.Length) + txtSendData.Text);
+            string sendPacket = AddCharacters("@" + Base64Encoding.EncodeInt32(txtSendData.Text.Length, 2) + txtSendData.Text);
             byte[] data = Encoding.Default.GetBytes(sendPacket);
             try
             {
@@ -58,11 +63,6 @@ namespace JewLogger
             }
 
             return newPacket;
-        }
-
-        private void frmSending_Load(object sender, EventArgs e)
-        {
-
         }
     }
 }

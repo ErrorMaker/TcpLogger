@@ -97,7 +97,7 @@
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmSending";
-            this.Text = "Send data to client/server";
+            this.Text = "JewLogger - Send Data";
             this.Load += new System.EventHandler(this.frmSending_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

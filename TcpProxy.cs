@@ -150,7 +150,7 @@ namespace JewLogger
 
                 while (amountRead < str.Length)
                 {
-                    int recieveLength = HabboEncoding.decodeB64(str.Substring(amountRead, 3));
+                    int recieveLength = Base64Encoding.DecodeInt32(str.Substring(amountRead, 3));
                     amountRead += 3;
 
                     packets.Add(str.Substring(amountRead, recieveLength));

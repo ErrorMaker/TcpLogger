@@ -38,6 +38,8 @@ namespace JewLogger
         private void Form1_Load(object sender, EventArgs e)
         {
             Form = this;
+            this.FormBorderStyle = FormBorderStyle.FixedSingle;
+
             this.btnStartListen.Enabled = true;
             this.btnStopListen.Enabled = false;
             this.btnSendData.Enabled = false;
@@ -183,10 +185,16 @@ namespace JewLogger
             frm.Show();
         }
 
-
         private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            frmAbout frm = new frmAbout();
+            frm.Show();
+        }
 
+        private void b64VL64EncoderToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmEncoder frm = new frmEncoder();
+            frm.Show();
         }
     }
 

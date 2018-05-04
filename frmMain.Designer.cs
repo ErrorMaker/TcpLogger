@@ -52,6 +52,7 @@
             this.btnSendData = new System.Windows.Forms.Button();
             this.chkLog = new System.Windows.Forms.CheckBox();
             this.btnStopListen = new System.Windows.Forms.Button();
+            this.b64VL64EncoderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -93,6 +94,7 @@
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.b64VL64EncoderToolStripMenuItem,
             this.aboutToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             this.helpToolStripMenuItem.Size = new System.Drawing.Size(44, 20);
@@ -271,6 +273,13 @@
             this.btnStopListen.UseVisualStyleBackColor = true;
             this.btnStopListen.Click += new System.EventHandler(this.btnStopListen_Click);
             // 
+            // b64VL64EncoderToolStripMenuItem
+            // 
+            this.b64VL64EncoderToolStripMenuItem.Name = "b64VL64EncoderToolStripMenuItem";
+            this.b64VL64EncoderToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.b64VL64EncoderToolStripMenuItem.Text = "B64/VL64 Encoder";
+            this.b64VL64EncoderToolStripMenuItem.Click += new System.EventHandler(this.b64VL64EncoderToolStripMenuItem_Click);
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,6 +342,7 @@
         private System.Windows.Forms.Button btnSendData;
         public System.Windows.Forms.CheckBox chkLog;
         private System.Windows.Forms.Button btnStopListen;
+        private System.Windows.Forms.ToolStripMenuItem b64VL64EncoderToolStripMenuItem;
     }
 }
 
