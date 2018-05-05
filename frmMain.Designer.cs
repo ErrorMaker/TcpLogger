@@ -55,6 +55,8 @@
             this.btnClearOutgoing = new System.Windows.Forms.Button();
             this.btnClearIncoming = new System.Windows.Forms.Button();
             this.btnSendData = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -70,7 +72,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(284, 38);
+            this.label2.Location = new System.Drawing.Point(274, 38);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(26, 13);
             this.label2.TabIndex = 1;
@@ -98,7 +100,7 @@
             // b64VL64HelperToolStripMenuItem
             // 
             this.b64VL64HelperToolStripMenuItem.Name = "b64VL64HelperToolStripMenuItem";
-            this.b64VL64HelperToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.b64VL64HelperToolStripMenuItem.Size = new System.Drawing.Size(161, 22);
             this.b64VL64HelperToolStripMenuItem.Text = "B64/VL64 Helper";
             this.b64VL64HelperToolStripMenuItem.Click += new System.EventHandler(this.b64VL64HelperToolStripMenuItem_Click);
             // 
@@ -119,7 +121,7 @@
             // 
             // txtLocalAddress
             // 
-            this.txtLocalAddress.Location = new System.Drawing.Point(135, 35);
+            this.txtLocalAddress.Location = new System.Drawing.Point(126, 35);
             this.txtLocalAddress.Name = "txtLocalAddress";
             this.txtLocalAddress.Size = new System.Drawing.Size(142, 20);
             this.txtLocalAddress.TabIndex = 1;
@@ -127,7 +129,7 @@
             // 
             // txtLocalPort
             // 
-            this.txtLocalPort.Location = new System.Drawing.Point(316, 35);
+            this.txtLocalPort.Location = new System.Drawing.Point(306, 35);
             this.txtLocalPort.Name = "txtLocalPort";
             this.txtLocalPort.Size = new System.Drawing.Size(56, 20);
             this.txtLocalPort.TabIndex = 2;
@@ -154,7 +156,7 @@
             // 
             // btnStartListen
             // 
-            this.btnStartListen.Location = new System.Drawing.Point(404, 27);
+            this.btnStartListen.Location = new System.Drawing.Point(504, 27);
             this.btnStartListen.Name = "btnStartListen";
             this.btnStartListen.Size = new System.Drawing.Size(138, 40);
             this.btnStartListen.TabIndex = 5;
@@ -164,7 +166,7 @@
             // 
             // txtRemotePort
             // 
-            this.txtRemotePort.Location = new System.Drawing.Point(316, 64);
+            this.txtRemotePort.Location = new System.Drawing.Point(306, 61);
             this.txtRemotePort.Name = "txtRemotePort";
             this.txtRemotePort.Size = new System.Drawing.Size(56, 20);
             this.txtRemotePort.TabIndex = 4;
@@ -172,7 +174,7 @@
             // 
             // txtRemoteAddress
             // 
-            this.txtRemoteAddress.Location = new System.Drawing.Point(135, 64);
+            this.txtRemoteAddress.Location = new System.Drawing.Point(126, 64);
             this.txtRemoteAddress.Name = "txtRemoteAddress";
             this.txtRemoteAddress.Size = new System.Drawing.Size(142, 20);
             this.txtRemoteAddress.TabIndex = 3;
@@ -181,7 +183,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(283, 64);
+            this.label4.Location = new System.Drawing.Point(274, 67);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(26, 13);
             this.label4.TabIndex = 10;
@@ -244,7 +246,7 @@
             this.chkDecodeEncryption.AutoSize = true;
             this.chkDecodeEncryption.Checked = true;
             this.chkDecodeEncryption.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDecodeEncryption.Location = new System.Drawing.Point(548, 97);
+            this.chkDecodeEncryption.Location = new System.Drawing.Point(378, 60);
             this.chkDecodeEncryption.Name = "chkDecodeEncryption";
             this.chkDecodeEncryption.Size = new System.Drawing.Size(114, 17);
             this.chkDecodeEncryption.TabIndex = 8;
@@ -256,7 +258,7 @@
             this.chkLog.AutoSize = true;
             this.chkLog.Checked = true;
             this.chkLog.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkLog.Location = new System.Drawing.Point(548, 76);
+            this.chkLog.Location = new System.Drawing.Point(378, 40);
             this.chkLog.Name = "chkLog";
             this.chkLog.Size = new System.Drawing.Size(113, 17);
             this.chkLog.TabIndex = 15;
@@ -265,7 +267,7 @@
             // 
             // btnStopListen
             // 
-            this.btnStopListen.Location = new System.Drawing.Point(404, 74);
+            this.btnStopListen.Location = new System.Drawing.Point(504, 74);
             this.btnStopListen.Name = "btnStopListen";
             this.btnStopListen.Size = new System.Drawing.Size(138, 40);
             this.btnStopListen.TabIndex = 16;
@@ -295,7 +297,7 @@
             // 
             // btnSendData
             // 
-            this.btnSendData.Location = new System.Drawing.Point(548, 27);
+            this.btnSendData.Location = new System.Drawing.Point(648, 27);
             this.btnSendData.Name = "btnSendData";
             this.btnSendData.Size = new System.Drawing.Size(138, 40);
             this.btnSendData.TabIndex = 19;
@@ -303,11 +305,31 @@
             this.btnSendData.UseVisualStyleBackColor = true;
             this.btnSendData.Click += new System.EventHandler(this.btnSendData_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(648, 74);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(138, 40);
+            this.button1.TabIndex = 20;
+            this.button1.Text = "Hook into incoming/outgoing data";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // textBox1
+            // 
+            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBox1.Location = new System.Drawing.Point(-5, 142);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.Size = new System.Drawing.Size(383, 410);
+            this.textBox1.TabIndex = 10;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 587);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSendData);
             this.Controls.Add(this.btnClearIncoming);
             this.Controls.Add(this.btnClearOutgoing);
@@ -323,6 +345,7 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnStartListen);
+            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtIncomingData);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtLocalPort);
@@ -370,6 +393,8 @@
         private System.Windows.Forms.Button btnClearOutgoing;
         private System.Windows.Forms.Button btnClearIncoming;
         private System.Windows.Forms.Button btnSendData;
+        private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.TextBox textBox1;
     }
 }
 

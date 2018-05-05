@@ -62,6 +62,12 @@
     <Compile Include="frmEncoder.Designer.cs">
       <DependentUpon>frmEncoder.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmHook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmHook.Designer.cs">
+      <DependentUpon>frmHook.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmSending.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmEncoder.resx">
       <DependentUpon>frmEncoder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmHook.resx">
+      <DependentUpon>frmHook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>

@@ -46,7 +46,6 @@ namespace JewLogger
             {
                 try
                 {
-                    int num;
                     int value = Base64Encoding.DecodeInt32(txtFromB64.Text);
                     txtToB64.Text = value + "";
                 }

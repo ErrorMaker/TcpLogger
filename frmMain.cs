@@ -14,11 +14,12 @@ namespace JewLogger
 {
     public partial class frmMain : Form
     {
-        private bool _serverStarted = false;
+        private bool _serverStarted;
         private TcpProxy _tcpForwarder;
         private Thread _listenerThread;
 
         public static frmMain Form;
+        public static frmHook Hooking;
 
         public TcpProxy TcpForwarder
         {
@@ -32,12 +33,15 @@ namespace JewLogger
 
         public frmMain()
         {
+            _serverStarted = false;
             InitializeComponent();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
             Form = this;
+            Hooking = new frmHook();
+
             this.FormBorderStyle = FormBorderStyle.FixedSingle;
             this.btnSendData.Enabled = false;
 
@@ -205,6 +209,11 @@ namespace JewLogger
         private void btnClearOutgoing_Click(object sender, EventArgs e)
         {
             txtOutgoingData.Text = string.Empty;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Hooking.Show();
         }
     }
 
