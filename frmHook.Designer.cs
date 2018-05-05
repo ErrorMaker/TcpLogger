@@ -109,6 +109,7 @@
             this.Name = "frmHook";
             this.Text = "JewLogger - Hooking";
             this.Load += new System.EventHandler(this.frmHook_Load);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmHook_Close);
             ((System.ComponentModel.ISupportInitialize)(this.incomingGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.outgoingGridView)).EndInit();
             this.ResumeLayout(false);

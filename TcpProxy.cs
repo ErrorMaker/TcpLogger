@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -137,24 +138,48 @@ namespace JewLogger
                             File.AppendAllText("packet.log", (this._incoming ? "INCOMING DATA: " : "OUTGOING DATA: ") + logData);
                         }
 
+                        string response = null;
 
-                        /*string response;
-
-                        if (this._incoming)
+                        #region Packet Editing
+                        if (frmMain.Hooking.HookedIncomingIds.Count > 0 || frmMain.Hooking.HookedOutgoingIds.Count > 0)
                         {
-                            response = packet.Header + packet.Data;
-                            response = "@" + Base64Encoding.EncodeInt32(response.Length, 2) + response;
+                            if (this._incoming)
+                            {
+                                if (frmMain.Hooking.HookedIncomingIds.Contains(packet.HeaderId))
+                                {
+                                    ThreadPool.QueueUserWorkItem(o => ShowDialogueSend(packet, true));
+                                }
+                                else
+                                {
+                                    response = BuildPacket(packet, packet.Data, true);
+                                }
+                            }
+                            else
+                            {
+                                if (frmMain.Hooking.HookedOutgoingIds.Contains(packet.HeaderId))
+                                {
+                                    ThreadPool.QueueUserWorkItem(o => ShowDialogueSend(packet, false));
+                                }
+                                else
+                                {
+                                    response = BuildPacket(packet, packet.Data, true);
+                                }
+                            }
                         }
-                        else
-                        {
-                            response = packet.Header + packet.Data;
-                        }
+                        #endregion
 
-                        byte[] processSend = Encoding.Default.GetBytes(response);
-                        state.DestinationSocket.Send(processSend, processSend.Length, SocketFlags.None);*/
+                        if (response != null)
+                        {
+                            byte[] processSend = Encoding.Default.GetBytes(response);
+                            state.DestinationSocket.Send(processSend, processSend.Length, SocketFlags.None);
+                        }
                     }
 
-                    state.DestinationSocket.Send(state.Buffer, bytesRead, SocketFlags.None);
+                    if (frmMain.Hooking.HookedIncomingIds.Count == 0 && frmMain.Hooking.HookedOutgoingIds.Count == 0)
+                    {
+                        state.DestinationSocket.Send(state.Buffer, bytesRead, SocketFlags.None);
+                    }
+
                     state.SourceSocket.BeginReceive(state.Buffer, 0, state.Buffer.Length, 0, OnDataReceive, state);
 
                 }
@@ -163,6 +188,47 @@ namespace JewLogger
             {
                 Close(this, state);
             }
+        }
+
+        private void ShowDialogueSend(PacketSummary packet, bool incoming)
+        {
+            string packetData = Microsoft.VisualBasic.Interaction.InputBox((incoming ? "Incoming" : "Outgoing") + " packet received",
+                       "Please edit it if you wish before sending",
+                       frmSend.AddReadableCharacters(packet.Data),
+                       0,
+                       0);
+
+            packetData = frmSend.AddUnreadableCharacters(packetData);
+
+            byte[] processSend = Encoding.Default.GetBytes(BuildPacket(packet, packetData, incoming));
+
+            if (this._incoming)
+            {
+                // Send to server
+                frmMain.Form.TcpForwarder.DestinationState.DestinationSocket.Send(processSend, processSend.Length, SocketFlags.None);
+            }
+            else
+            {
+                // Send to client
+                frmMain.Form.TcpForwarder.DestinationState.SourceSocket.Send(processSend, processSend.Length, SocketFlags.None);
+            }
+        }
+
+        private string BuildPacket(PacketSummary packet, string packetData, bool incoming)
+        {
+            string response;
+
+            if (this._incoming)
+            {
+                response = packet.Header + packetData;
+                response = "@" + Base64Encoding.EncodeInt32(response.Length, 2) + response;
+            }
+            else
+            {
+                response = packet.Header + packetData;
+            }
+
+            return response;
         }
 
         private List<PacketSummary> HandleIncomingData(string str)
@@ -186,7 +252,7 @@ namespace JewLogger
                     amountRead += recieveLength;
                 }
             }
-            catch {  }
+            catch { }
 
             return packets;
         }

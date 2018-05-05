@@ -18,6 +18,16 @@ namespace JewLogger
         private List<int> _hookedIncomingIds;
         private List<int> _hookedOutgoingIds;
 
+        public List<int> HookedIncomingIds
+        {
+            get { return _hookedIncomingIds; }
+        }
+
+        public List<int> HookedOutgoingIds
+        {
+            get { return _hookedOutgoingIds; }
+        }
+
         public frmHook()
         {
             InitializeComponent();
@@ -45,6 +55,13 @@ namespace JewLogger
             }
         }
 
+        private void frmHook_Close(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            this.Hide();
+            this.Parent = null;
+        }
+
         private void button1_Click(object sender, EventArgs e)
         {
             ProcessPacketHooking(true);
@@ -60,7 +77,7 @@ namespace JewLogger
                 string headerId = row.Field<string>(0);
                 string header = row.Field<string>(1);
 
-                if (headerId.Length > 0)
+                if (headerId != null && headerId.Length > 0)
                 {
                     try
                     {
@@ -70,9 +87,9 @@ namespace JewLogger
                     catch { }
                 }
 
-                if (header.Length > 0)
+                if (header != null && header.Length > 0)
                 {
-                    _hookedIncomingIds.Add(Base64Encoding.DecodeInt32(headerId));
+                    _hookedIncomingIds.Add(Base64Encoding.DecodeInt32(header));
                 }
             }
 
@@ -81,7 +98,7 @@ namespace JewLogger
                 string headerId = row.Field<string>(0);
                 string header = row.Field<string>(1);
 
-                if (headerId.Length > 0)
+                if (headerId != null && headerId.Length > 0)
                 {
                     try
                     {
@@ -91,13 +108,16 @@ namespace JewLogger
                     catch { }
                 }
 
-                if (header.Length > 0)
+                if (header != null && header.Length > 0)
                 {
-                    _hookedOutgoingIds.Add(Base64Encoding.DecodeInt32(headerId));
+                    _hookedOutgoingIds.Add(Base64Encoding.DecodeInt32(header));
                 }
             }
 
-            MessageBox.Show("Added " + _hookedIncomingIds.Count + " incoming headers and " + _hookedOutgoingIds.Count + " outgoing headers to be hooked.");
+            if (showMessage)
+            {
+                MessageBox.Show("Added " + _hookedIncomingIds.Count + " incoming headers and " + _hookedOutgoingIds.Count + " outgoing headers to be hooked.");
+            }
         }
     }
 }

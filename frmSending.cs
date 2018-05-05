@@ -26,7 +26,7 @@ namespace JewLogger
         private void btnSendToClient_Click(object sender, EventArgs e)
         {
 
-            string clientPacket = AddCharacters(txtSendData.Text + (char)1);
+            string clientPacket = AddUnreadableCharacters(txtSendData.Text + (char)1);
             byte[] data = Encoding.Default.GetBytes(clientPacket);
 
             try
@@ -41,7 +41,7 @@ namespace JewLogger
 
         private void btnSendToServer_Click(object sender, EventArgs e)
         {
-            string sendPacket = AddCharacters("@" + Base64Encoding.EncodeInt32(txtSendData.Text.Length, 2) + txtSendData.Text);
+            string sendPacket = AddUnreadableCharacters("@" + Base64Encoding.EncodeInt32(txtSendData.Text.Length, 2) + txtSendData.Text);
             byte[] data = Encoding.Default.GetBytes(sendPacket);
             try
             {
@@ -53,13 +53,25 @@ namespace JewLogger
             }
         }
     
-        private string AddCharacters(string packet)
+        public static string AddUnreadableCharacters(string packet)
         {
             string newPacket = packet;
 
             for (int i = 0; i < 14; i++)
             {
                 newPacket = newPacket.Replace("{" + i + "}", "" + (char)i);
+            }
+
+            return newPacket;
+        }
+
+        public static string AddReadableCharacters(string packet)
+        {
+            string newPacket = packet;
+
+            for (int i = 0; i < 14; i++)
+            {
+                newPacket = newPacket.Replace("" + (char)i, "{" + i + "}");
             }
 
             return newPacket;
