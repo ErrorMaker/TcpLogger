@@ -56,7 +56,6 @@
             this.btnClearIncoming = new System.Windows.Forms.Button();
             this.btnSendData = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -234,7 +233,7 @@
             this.chkIncomingAutoscroll.AutoSize = true;
             this.chkIncomingAutoscroll.Checked = true;
             this.chkIncomingAutoscroll.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkIncomingAutoscroll.Location = new System.Drawing.Point(15, 558);
+            this.chkIncomingAutoscroll.Location = new System.Drawing.Point(12, 558);
             this.chkIncomingAutoscroll.Name = "chkIncomingAutoscroll";
             this.chkIncomingAutoscroll.Size = new System.Drawing.Size(75, 17);
             this.chkIncomingAutoscroll.TabIndex = 7;
@@ -315,15 +314,6 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
-            // textBox1
-            // 
-            this.textBox1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.textBox1.Location = new System.Drawing.Point(-5, 142);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(383, 410);
-            this.textBox1.TabIndex = 10;
-            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -345,7 +335,6 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.btnStartListen);
-            this.Controls.Add(this.textBox1);
             this.Controls.Add(this.txtIncomingData);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtLocalPort);
@@ -394,7 +383,6 @@
         private System.Windows.Forms.Button btnClearIncoming;
         private System.Windows.Forms.Button btnSendData;
         private System.Windows.Forms.Button button1;
-        public System.Windows.Forms.TextBox textBox1;
     }
 }
 
