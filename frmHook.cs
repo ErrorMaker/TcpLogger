@@ -31,10 +31,7 @@ namespace JewLogger
         public frmHook()
         {
             InitializeComponent();
-        }
 
-        private void frmHook_Load(object sender, EventArgs e)
-        {
             _hookedIncomingIds = new List<int>();
             _hookedOutgoingIds = new List<int>();
 
@@ -53,6 +50,11 @@ namespace JewLogger
                 _incomingDataTable.Columns.Add(kvp.Key, kvp.Value);
                 _outgoingDataTable.Columns.Add(kvp.Key, kvp.Value);
             }
+        }
+
+        private void frmHook_Load(object sender, EventArgs e)
+        {
+
         }
 
         private void frmHook_Close(object sender, FormClosingEventArgs e)
