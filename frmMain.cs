@@ -191,6 +191,12 @@ namespace JewLogger
             frm.Show();
         }
 
+        private void btnSendData_Click(object sender, EventArgs e)
+        {
+            frmSend frm = new frmSend();
+            frm.Show();
+        }
+
         private void btnClearIncoming_Click(object sender, EventArgs e)
         {
             txtIncomingData.Text = string.Empty;
@@ -199,12 +205,6 @@ namespace JewLogger
         private void btnClearOutgoing_Click(object sender, EventArgs e)
         {
             txtOutgoingData.Text = string.Empty;
-        }
-
-        private void btnSendData_Click(object sender, EventArgs e)
-        {
-            frmSending frm = new frmSending();
-            frm.Show();
         }
     }
 

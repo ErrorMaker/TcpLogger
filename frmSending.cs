@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace JewLogger
 {
-    public partial class frmSending : Form
+    public partial class frmSend : Form
     {
-        public frmSending()
+        public frmSend()
         {
             InitializeComponent();
         }
