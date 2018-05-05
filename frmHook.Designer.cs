@@ -75,7 +75,6 @@
             this.incomingGridView.Name = "incomingGridView";
             this.incomingGridView.Size = new System.Drawing.Size(342, 362);
             this.incomingGridView.TabIndex = 3;
-            this.incomingGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.incomingGridView_RowsAdded);
             // 
             // outgoingGridView
             // 
@@ -84,8 +83,6 @@
             this.outgoingGridView.Name = "outgoingGridView";
             this.outgoingGridView.Size = new System.Drawing.Size(350, 362);
             this.outgoingGridView.TabIndex = 4;
-            this.outgoingGridView.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.outgoingGridView_RowsAdded);
-            this.outgoingGridView.Click += new System.EventHandler(outgoingGridView_Click);
             // 
             // button1
             // 

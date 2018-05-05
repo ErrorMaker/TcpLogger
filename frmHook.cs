@@ -47,6 +47,11 @@ namespace JewLogger
 
         private void button1_Click(object sender, EventArgs e)
         {
+            ProcessPacketHooking(true);
+        }
+
+        public void ProcessPacketHooking(bool showMessage)
+        {
             _hookedIncomingIds.Clear();
             _hookedOutgoingIds.Clear();
 
@@ -91,26 +96,8 @@ namespace JewLogger
                     _hookedOutgoingIds.Add(Base64Encoding.DecodeInt32(headerId));
                 }
             }
-        }
 
-        private void incomingGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            button1_Click(null, null);
-        }
-
-        private void outgoingGridView_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        {
-            button1_Click(null, null);
-        }
-
-        void incomingGridView_Click(object sender, EventArgs e)
-        {
-            button1_Click(null, null);
-        }
-
-        void outgoingGridView_Click(object sender, EventArgs e)
-        {
-            button1_Click(null, null);
+            MessageBox.Show("Added " + _hookedIncomingIds.Count + " incoming headers and " + _hookedOutgoingIds.Count + " outgoing headers to be hooked.");
         }
     }
 }

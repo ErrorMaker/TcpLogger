@@ -77,6 +77,8 @@ namespace JewLogger
         private void OnDataReceive(IAsyncResult result)
         {
             var state = (State)result.AsyncState;
+            frmMain.Hooking.ProcessPacketHooking(false);
+
             try
             {
                 var bytesRead = state.SourceSocket.EndReceive(result);
