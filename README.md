@@ -6,7 +6,7 @@ JewLogger is a packetlogger developed by Quackster, which supports the Shockwave
 
 By working as being a man-in-the-middle type program there is the ability to sniff incoming and outgoing packets, and to also send new packets to the server and client.
 
-If you get offended at the name, I'm not sorry. Its purpose is to be provocative
+If you get offended at the name, I'm not sorry. Its purpose is to be provocative.
 
 ## Features ##
 
