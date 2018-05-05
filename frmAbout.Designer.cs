@@ -99,7 +99,7 @@
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(103, 22);
             this.label6.TabIndex = 5;
-            this.label6.Text = "v0.0.1";
+            this.label6.Text = "v0.0.2";
             this.label6.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // frmAbout
