@@ -24,4 +24,4 @@ See latest releases [here](https://github.com/Quackster/JewLogger/releases).
 
 ## Screenshots ##
 
-![](https://i.imgur.com/FzOPvkU.png)
+![](https://i.imgur.com/VvVyN2J.png)
