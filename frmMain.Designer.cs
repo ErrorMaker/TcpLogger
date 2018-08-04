@@ -56,6 +56,7 @@
             this.btnClearIncoming = new System.Windows.Forms.Button();
             this.btnSendData = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
+            this.chkLogScreen = new System.Windows.Forms.CheckBox();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -243,8 +244,6 @@
             // chkDecodeEncryption
             // 
             this.chkDecodeEncryption.AutoSize = true;
-            this.chkDecodeEncryption.Checked = true;
-            this.chkDecodeEncryption.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkDecodeEncryption.Location = new System.Drawing.Point(378, 60);
             this.chkDecodeEncryption.Name = "chkDecodeEncryption";
             this.chkDecodeEncryption.Size = new System.Drawing.Size(114, 17);
@@ -314,11 +313,24 @@
             this.button1.UseVisualStyleBackColor = true;
             this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
+            // chkLogScreen
+            // 
+            this.chkLogScreen.AutoSize = true;
+            this.chkLogScreen.Checked = true;
+            this.chkLogScreen.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkLogScreen.Location = new System.Drawing.Point(377, 83);
+            this.chkLogScreen.Name = "chkLogScreen";
+            this.chkLogScreen.Size = new System.Drawing.Size(91, 17);
+            this.chkLogScreen.TabIndex = 21;
+            this.chkLogScreen.Text = "Log to screen";
+            this.chkLogScreen.UseVisualStyleBackColor = true;
+            // 
             // frmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 587);
+            this.Controls.Add(this.chkLogScreen);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnSendData);
             this.Controls.Add(this.btnClearIncoming);
@@ -383,6 +395,7 @@
         private System.Windows.Forms.Button btnClearIncoming;
         private System.Windows.Forms.Button btnSendData;
         private System.Windows.Forms.Button button1;
+        public System.Windows.Forms.CheckBox chkLogScreen;
     }
 }
 

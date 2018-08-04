@@ -160,6 +160,11 @@ namespace JewLogger
 
         public static void AppendIncomingTextBox(frmMain instance, string value)
         {
+            if (!instance.chkLogScreen.Checked)
+            {
+                return;
+            }
+
             if (instance.InvokeRequired)
             {
                 instance.Invoke(new Action<frmMain, string>(AppendIncomingTextBox), new object[] { instance, value });

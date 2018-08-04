@@ -186,7 +186,7 @@ namespace JewLogger
             }
             catch
             {
-                Close(this, state);
+                //Close(this, state);
             }
         }
 
