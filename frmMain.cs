@@ -134,6 +134,11 @@ namespace JewLogger
 
         public static void AppendOutgoingTextBox(frmMain instance, string value)
         {
+            if (!instance.chkLogScreen.Checked)
+            {
+                return;
+            }
+
             if (instance.InvokeRequired)
             {
                 instance.Invoke(new Action<frmMain, string>(AppendOutgoingTextBox), new object[] { instance, value });
