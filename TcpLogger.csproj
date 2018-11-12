@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{B3DA3DA0-2FB2-495B-B030-7D2D40F079E2}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>JewLogger</RootNamespace>
-    <AssemblyName>JewLogger</AssemblyName>
+    <RootNamespace>TcpLogger</RootNamespace>
+    <AssemblyName>TcpLogger</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

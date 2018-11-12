@@ -1,8 +1,8 @@
 obj/
-JewLogger.csproj.user
+TcpLogger.csproj.user
 bin/
 bin/Debug/packet.log
-bin/Debug/JewLogger.exe
-bin/Debug/JewLogger.pdb
-.vs/JewLogger/v15/.suo
+bin/Debug/TcpLogger.exe
+bin/Debug/TcpLogger.pdb
+.vs/TcpLogger/v15/.suo
 .vs/
