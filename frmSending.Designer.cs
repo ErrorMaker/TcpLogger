@@ -1,4 +1,4 @@
-﻿namespace JewLogger
+﻿namespace TcpLogger
 {
     partial class frmSend
     {
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSend));
             this.txtSendData = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.btnSendToClient = new System.Windows.Forms.Button();
@@ -85,7 +84,7 @@
     " (char)1 suffix, \r\nor if sent to server, the B64 length prefix will be added aut" +
     "omatically.";
             // 
-            // frmSending
+            // frmSend
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -95,9 +94,8 @@
             this.Controls.Add(this.btnSendToClient);
             this.Controls.Add(this.txtSendData);
             this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.Name = "frmSending";
-            this.Text = "JewLogger - Send Data";
+            this.Name = "frmSend";
+            this.Text = "TcpLogger - Send Data";
             this.Load += new System.EventHandler(this.frmSending_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

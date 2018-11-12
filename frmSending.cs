@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JewLogger
+namespace TcpLogger
 {
     public partial class frmSend : Form
     {

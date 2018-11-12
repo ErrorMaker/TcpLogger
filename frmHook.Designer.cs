@@ -1,4 +1,4 @@
-﻿namespace JewLogger
+﻿namespace TcpLogger
 {
     partial class frmHook
     {
@@ -105,11 +105,10 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmHook";
-            this.Text = "JewLogger - Hooking";
-            this.Load += new System.EventHandler(this.frmHook_Load);
+            this.Text = "TcpLogger - Hooking";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.frmHook_Close);
+            this.Load += new System.EventHandler(this.frmHook_Load);
             ((System.ComponentModel.ISupportInitialize)(this.incomingGridView)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.outgoingGridView)).EndInit();
             this.ResumeLayout(false);

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace JewLogger.Ciphering
+namespace TcpLogger.Ciphering
 {
     /// <summary>
     /// Provides common functions for RC4 methods. This class is abstract.

@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JewLogger
+namespace TcpLogger
 {
     public partial class frmMain : Form
     {

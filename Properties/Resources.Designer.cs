@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace JewLogger.Properties
+namespace TcpLogger.Properties
 {
 
 

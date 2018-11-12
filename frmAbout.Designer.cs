@@ -1,4 +1,4 @@
-﻿namespace JewLogger
+﻿namespace TcpLogger
 {
     partial class frmAbout
     {
@@ -28,11 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmAbout));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -44,7 +42,7 @@
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(257, 36);
             this.label1.TabIndex = 0;
-            this.label1.Text = "JewLogger";
+            this.label1.Text = "TcpLogger";
             this.label1.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // label2
@@ -54,7 +52,7 @@
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(263, 65);
             this.label2.TabIndex = 1;
-            this.label2.Text = "JewLogger is a packetlogger developed \r\nby Quackster,  which supports the Shockwa" +
+            this.label2.Text = "TcpLogger is a packetlogger developed \r\nby Quackster,  which supports the Shockwa" +
     "ve \r\nversions of Habbo.";
             this.label2.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
@@ -71,21 +69,10 @@
     "r and client.";
             this.label3.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
-            // label4
-            // 
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(12, 180);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(263, 32);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "If you get offended at the name, I\'m not sorry. \r\nIts purpose is to be provocativ" +
-    "e";
-            this.label4.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // label5
             // 
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(12, 250);
+            this.label5.Location = new System.Drawing.Point(12, 197);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(260, 13);
             this.label5.TabIndex = 4;
@@ -95,7 +82,7 @@
             // label6
             // 
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(89, 228);
+            this.label6.Location = new System.Drawing.Point(85, 175);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(103, 22);
             this.label6.TabIndex = 5;
@@ -109,13 +96,11 @@
             this.ClientSize = new System.Drawing.Size(290, 274);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmAbout";
-            this.Text = "JewLogger - About";
+            this.Text = "TcpLogger - About";
             this.Load += new System.EventHandler(this.frmAbout_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -127,7 +112,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
     }

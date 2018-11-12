@@ -1,4 +1,4 @@
-﻿namespace JewLogger
+﻿namespace TcpLogger
 {
     partial class frmEncoder
     {
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmEncoder));
             this.label1 = new System.Windows.Forms.Label();
             this.txtToB64 = new System.Windows.Forms.TextBox();
             this.txtFromB64 = new System.Windows.Forms.TextBox();
@@ -169,9 +168,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtToB64);
             this.Controls.Add(this.label1);
-            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "frmEncoder";
-            this.Text = "JewLogger - B64/VL64 Encoder";
+            this.Text = "TcpLogger - B64/VL64 Encoder";
             this.Load += new System.EventHandler(this.frmEncoder_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

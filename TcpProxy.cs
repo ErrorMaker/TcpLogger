@@ -1,4 +1,4 @@
-﻿using JewLogger.Ciphering;
+﻿using TcpLogger.Ciphering;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -10,7 +10,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JewLogger
+namespace TcpLogger
 {
     public class TcpProxy
     {

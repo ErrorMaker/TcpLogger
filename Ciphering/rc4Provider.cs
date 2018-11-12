@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text;
 
-namespace JewLogger.Ciphering
+namespace TcpLogger.Ciphering
 {
     /// <summary>
     /// Provides data ciphering with RC4.
